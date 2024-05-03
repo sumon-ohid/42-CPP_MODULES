@@ -5,30 +5,30 @@
 #                                                     +:+ +:+         +:+      #
 #    By: msumon < msumon@student.42vienna.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/05/02 22:52:22 by msumon            #+#    #+#              #
-#    Updated: 2024/05/03 09:05:23 by msumon           ###   ########.fr        #
+#    Created: 2024/05/03 08:58:12 by msumon            #+#    #+#              #
+#    Updated: 2024/05/03 10:47:44 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 	= megaphone
-CC 		= c++
-FLAGS 	= -Wall -Werror -Wextra -std=c++98
+NAME	= phonebook
+CC		= c++
+FLAGS	= -Wall -Werror -Wextra -std=c++98
+HEADERS	= contact.hpp phonebook.hpp
+SRCS	= main.cpp srcs/contact.cpp srcs/phonebook.cpp
+OBJS	= $(SRCS:.cpp=.o)
 RM		= rm -rf
 
-all: 	$(NAME)
+all:	$(NAME)
 
-$(NAME):
-		@$(CC) $(FLAGS) megaphone.cpp -o $(NAME)
-		@echo -compile success.
+$(NAME): $(OBJS)
+		$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
 clean:
-		@$(RM) $(NAME)
-		@echo -remove success.
+		$(RM) $(OBJS)
 
-fclean:
-		@$(RM) $(NAME)
-		@echo -remove success.
-
+fclean: clean
+		$(RM) $(NAME)
+		
 re:		fclean all
 
-.PHONY: all clean fclean all
+.PHONY: all clean fclean re
