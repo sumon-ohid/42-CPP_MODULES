@@ -6,36 +6,81 @@
 /*   By: msumon < msumon@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:15:04 by msumon            #+#    #+#             */
-/*   Updated: 2024/05/03 10:47:13 by msumon           ###   ########.fr       */
+/*   Updated: 2024/05/03 11:21:59 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/phonebook.hpp"
 
-int main()
+void Welcome(void)
 {
-    int input;
+    std::cout << "\033[1;32m";
+    std::cout <<    "*-------------------------------------------*\n"
+                    "|                                           |\n"
+                    "|              PhoneBook 1980s              |\n"  
+                    "|                                           |\n"
+                    "|          ADD - Add a new contact          |\n"
+                    "|          SEARCH - Display a contact       |\n"
+                    "|          EXIT - Quit PhoneBook            |\n"
+                    "|                                           |\n"
+                    "*-------------------------------------------*" << std::endl;
+    std::cout << "\033[0m";
+}
 
-    input = 0;
-    std::cout << "1. ADD - add new contact.\n";
-    std::cout << "2. SEARCH - search existing contact.\n";
-    std::cout << "3. EXIT - quit program.\n";
+int	main(void)
+{
+	PhoneBook	phonebook;
+	int index;
 
-    while (1)
-    {
-        std::cout << "PLEASE CHOOSE : ";
-        std::cin >> input;
-        if (input == 1)
-            add_contact();
-        else if (input == 2)
-            search_contact();
-        else if (input == 3)
-        {
-            std::cout << "Good Bye !!!\n";
-            break;
-        }
-        else
-            std::cout << "PLEASE ENTER A VALID INPUT !!\n";
-    }
-    return (0);
+    Welcome();
+	while (true)
+	{
+        std::cout << "\033[1;32m";
+        std::cout << "--->> ";
+		std::string command;
+		std::cout << "Enter command (ADD, SEARCH, EXIT): ";
+		std::cin >> command;
+		if (command == "ADD")
+		{
+			std::string first_name, last_name, nickname, phone_number,
+				darkest_secret;
+			std::cout << "Enter First Name: ";
+			std::cin >> first_name;
+			std::cout << "Enter Last Name: ";
+			std::cin >> last_name;
+			std::cout << "Enter Nickname: ";
+			std::cin >> nickname;
+			std::cout << "Enter Phone Number: ";
+			std::cin >> phone_number;
+			std::cout << "Enter Darkest Secret: ";
+			std::cin >> darkest_secret;
+			Contact new_contact(first_name, last_name, nickname, phone_number,
+				darkest_secret);
+			phonebook.addContact(new_contact);
+		}
+		else if (command == "SEARCH")
+		{
+			phonebook.displayContacts();
+			std::cout << "Enter Index: ";
+			std::cin >> index;
+            if (!std::cin || index < 0 || index > 7)
+            {
+                std::cerr << "Error: Input is either not a valid number or not within the range 0-7.\n";
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
+            else
+                phonebook.searchContact(index);
+		}
+		else if (command == "EXIT")
+		{
+			std::cout << "Exiting program..." << std::endl;
+			break ;
+		}
+		else
+		{
+			std::cout << "Invalid command! Try again." << std::endl;
+		}
+	}
+	return (0);
 }
