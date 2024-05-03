@@ -6,7 +6,7 @@
 #    By: msumon < msumon@student.42vienna.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 08:58:12 by msumon            #+#    #+#              #
-#    Updated: 2024/05/03 10:47:44 by msumon           ###   ########.fr        #
+#    Updated: 2024/05/03 11:25:19 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= phonebook
 CC		= c++
 FLAGS	= -Wall -Werror -Wextra -std=c++98
 HEADERS	= contact.hpp phonebook.hpp
-SRCS	= main.cpp srcs/contact.cpp srcs/phonebook.cpp
+SRCS	= srcs/main.cpp
 OBJS	= $(SRCS:.cpp=.o)
 RM		= rm -rf
 

@@ -6,7 +6,7 @@
 /*   By: msumon < msumon@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 09:07:08 by msumon            #+#    #+#             */
-/*   Updated: 2024/05/03 10:58:58 by msumon           ###   ########.fr       */
+/*   Updated: 2024/05/03 11:24:40 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "contact.hpp"
 # include <iostream>
+
+void Welcome(void);
 
 class PhoneBook
 {
