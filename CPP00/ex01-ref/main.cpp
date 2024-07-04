@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:15:04 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/04 18:44:13 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/04 17:53:13 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void Welcome(void)
 					"|                                           |\n"
                     "|          SEARCH - Display a contact       |\n"
 					"|___________________________________________|\n"
-					"|                                           |\n"
+					"|                                           |"
                     "|          EXIT - Quit PhoneBook            |\n"
                     "|___________________________________________|" << std::endl;
     std::cout << "\033[0m";
@@ -65,7 +65,7 @@ int	main(void)
 			std::cin >> index;
             if (!std::cin || index < 0 || index > 7)
             {
-                std::cerr << "Error: the range is 0-7.\n";
+                std::cerr << "Error: Input is either not a valid number or not within the range 0-7.\n";
                 std::cin.clear();
             }
             else
@@ -77,7 +77,9 @@ int	main(void)
 			break ;
 		}
 		else
+		{
 			std::cout << "Invalid command! Try again." << std::endl;
+		}
 	}
 	return (0);
 }

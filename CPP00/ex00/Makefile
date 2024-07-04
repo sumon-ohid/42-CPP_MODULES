@@ -3,32 +3,31 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: msumon < msumon@student.42vienna.com>      +#+  +:+       +#+         #
+#    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/02 22:52:22 by msumon            #+#    #+#              #
-#    Updated: 2024/05/03 09:05:23 by msumon           ###   ########.fr        #
+#    Updated: 2024/07/04 17:45:11 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	= megaphone
-CC 		= c++
-FLAGS 	= -Wall -Werror -Wextra -std=c++98
+CC		= c++
+FLAGS	= -Wall -Werror -Wextra -std=c++98
+SRCS	= megaphone.cpp
+OBJS	= $(SRCS:.cpp=.o)
 RM		= rm -rf
 
-all: 	$(NAME)
+all:	$(NAME)
 
-$(NAME):
-		@$(CC) $(FLAGS) megaphone.cpp -o $(NAME)
-		@echo -compile success.
+$(NAME): $(OBJS)
+		$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
 clean:
-		@$(RM) $(NAME)
-		@echo -remove success.
+		$(RM) $(OBJS)
 
-fclean:
-		@$(RM) $(NAME)
-		@echo -remove success.
-
+fclean: clean
+		$(RM) $(NAME)
+		
 re:		fclean all
 
-.PHONY: all clean fclean all
+.PHONY: all clean fclean re
