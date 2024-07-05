@@ -5,15 +5,16 @@
 #                                                     +:+ +:+         +:+      #
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/05/02 22:52:22 by msumon            #+#    #+#              #
-#    Updated: 2024/07/05 21:53:53 by msumon           ###   ########.fr        #
+#    Created: 2024/07/05 21:52:43 by msumon            #+#    #+#              #
+#    Updated: 2024/07/05 21:54:55 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 	= Megaphone
+NAME	= TheJobOfYourDreams
 CC		= c++
 FLAGS	= -Wall -Werror -Wextra -std=c++98
-SRCS	= megaphone.cpp
+HEADERS	= Account.hpp
+SRCS	= Account.cpp tests.cpp
 OBJS	= $(SRCS:.cpp=.o)
 RM		= rm -rf
 
