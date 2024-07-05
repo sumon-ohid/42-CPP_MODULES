@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 09:07:05 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/04 18:41:42 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/05 20:05:57 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,15 @@ class Contact
 		std::cout << "Darkest Secret: " << darkest_secret << std::endl;
 	}
 
-	std::string getFirstName() const
+	std::string get_first_name() const
 	{
 		return (first_name);
 	}
-	std::string getLastName() const
+	std::string get_last_name() const
 	{
 		return (last_name);
 	}
-	std::string getNickname() const
+	std::string get_nickname() const
 	{
 		return (nickname);
 	}

@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:15:04 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/04 18:44:13 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/05 21:45:11 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void Welcome(void)
     std::cout << "\033[1;32m";
     std::cout <<    " ___________________________________________\n"
                     "|                                           |\n"
-                    "|          ADD - Add a new contact          |\n"
+                    "|          ADD     - Add a new contact      |\n"
 					"|___________________________________________|\n"
 					"|                                           |\n"
-                    "|          SEARCH - Display a contact       |\n"
+                    "|          SEARCH  - Display a contact      |\n"
 					"|___________________________________________|\n"
 					"|                                           |\n"
-                    "|          EXIT - Quit PhoneBook            |\n"
+                    "|          EXIT    - Exit PhoneBook         |\n"
                     "|___________________________________________|" << std::endl;
     std::cout << "\033[0m";
 }
@@ -38,7 +38,7 @@ int	main(void)
 	{
         std::cout << "--->> ";
 		std::string command;
-		std::cout << "Enter command (ADD, SEARCH, EXIT): ";
+		std::cout << "Enter command (ADD, SEARCH, EXIT) : ";
 		std::cin >> command;
 		if (command == "ADD")
 		{
@@ -65,8 +65,8 @@ int	main(void)
 			std::cin >> index;
             if (!std::cin || index < 0 || index > 7)
             {
-                std::cerr << "Error: the range is 0-7.\n";
-                std::cin.clear();
+                std::cerr << "Error: the range is 0-7." << std::endl;
+				std::cin.clear();
             }
             else
                 phonebook.searchContact(index);
@@ -74,10 +74,14 @@ int	main(void)
 		else if (command == "EXIT")
 		{
 			std::cout << "Exiting program..." << std::endl;
+			std::cin.clear();
 			break ;
 		}
 		else
+		{
 			std::cout << "Invalid command! Try again." << std::endl;
+			std::cin.clear();
+		}
 	}
 	return (0);
 }
