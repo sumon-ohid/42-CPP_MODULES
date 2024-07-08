@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:15:04 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/08 06:25:47 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/08 17:51:34 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,79 @@ void Welcome(void)
     std::cout << "\033[0m";
 }
 
+static int is_all_alpha(const std::string &str)
+{
+	for (size_t i = 0; i < str.length(); i++)
+	{
+		if (!isalpha(str[i]))
+			return (0);
+	}
+	return (1);
+}
+
+static int is_all_digits(const std::string &str)
+{
+	for (size_t i = 0; i < str.length(); i++)
+	{
+		if (!isdigit(str[i]))
+			return (0);
+	}
+	return (1);
+}
+
+void error_msg(const std::string &msg)
+{
+	std::cerr << "Error: " << msg << std::endl;
+}
+
+static void add_new_contact(PhoneBook &PhoneBook)
+{
+	std::string first_name, last_name, nickname, phone_number, darkest_secret;
+
+	std::cout << "Enter First Name: ";
+	std::getline(std::cin, first_name);
+	if (!is_all_alpha(first_name))
+	    return (error_msg("First name must be alphabetic."));
+	std::cout << "Enter Last Name: ";
+	std::getline(std::cin, last_name) ;
+	if (!is_all_alpha(last_name))
+	    return (error_msg("Last name must be alphabetic."));
+	std::cout << "Enter Nickname: ";
+	std::getline(std::cin, nickname);
+	if (!is_all_alpha(nickname))
+	    return (error_msg("Nickname must be alphabetic."));
+	std::cout << "Enter Phone Number (10 digits): (+43) ";
+	std::getline(std::cin, phone_number);
+	if (phone_number.length() != 10 || !is_all_digits(phone_number))
+	    return(error_msg("Phone number must be 10 digits."));
+	std::cout << "Enter Darkest Secret: ";
+	std::getline(std::cin, darkest_secret);
+	if (darkest_secret.length() == 0)
+	    return (error_msg("Darkest secret cannot be empty."));
+	Contact new_contact(first_name, last_name, nickname, phone_number, darkest_secret);
+	PhoneBook.addContact(new_contact);
+}
+
+static void search_in_phonebook(PhoneBook &PhoneBook)
+{
+	int index;
+	std::string index_str;
+
+	PhoneBook.displayContacts();
+	std::cout << "Enter index of the contact: ";
+	std::getline(std::cin, index_str);
+	if (index_str.length() != 1 || !isdigit(index_str[0]))
+	{
+		std::cerr << "Error: Invalid index." << std::endl;
+		return ;
+	}
+	index = index_str[0] - '0';
+	PhoneBook.searchContact(index);
+}
+
 int	main(void)
 {
 	PhoneBook	phonebook;
-	int index;
 
     Welcome();
 	while (true)
@@ -43,49 +112,18 @@ int	main(void)
         std::cout << "--->> ";
 		std::string command;
 		std::cout << "Enter command (ADD, SEARCH, EXIT) : ";
-		std::cin >> command;
+		std::getline (std::cin, command);
 		if (command == "ADD")
-		{
-			std::string first_name, last_name, nickname, phone_number,
-				darkest_secret;
-			std::cout << "Enter First Name: ";
-			std::cin >> first_name;
-			std::cout << "Enter Last Name: ";
-			std::cin >> last_name;
-			std::cout << "Enter Nickname: ";
-			std::cin >> nickname;
-			std::cout << "Enter Phone Number: ";
-			std::cin >> phone_number;
-			std::cout << "Enter Darkest Secret: ";
-			std::cin >> darkest_secret;
-			Contact new_contact(first_name, last_name, nickname, phone_number,
-				darkest_secret);
-			phonebook.addContact(new_contact);
-		}
+			add_new_contact(phonebook);
 		else if (command == "SEARCH")
-		{
-			phonebook.displayContacts();
-			std::cout << "Enter Index: ";
-			std::cin >> index;
-            if (!std::cin || index < 0 || index > 7)
-            {
-                std::cerr << "Error: the range is 0-7." << std::endl;
-				std::cin.clear();
-            }
-            else
-                phonebook.searchContact(index);
-		}
+		    search_in_phonebook(phonebook);
 		else if (command == "EXIT")
 		{
 			std::cout << "Exiting program..." << std::endl;
-			std::cin.clear();
 			break ;
 		}
 		else
-		{
 			std::cout << "Invalid command! Try again." << std::endl;
-			std::cin.clear();
-		}
 	}
 	return (0);
 }

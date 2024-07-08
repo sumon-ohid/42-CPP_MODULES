@@ -6,24 +6,25 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 06:31:27 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/08 06:40:13 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/08 17:54:26 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
+#include "contact.hpp"
 
 Contact::Contact()
 {
 }
 
 Contact::Contact(std::string first, std::string last, std::string nick,
-    std::string phone_number, std::string darkest_secret)
+    std::string phone_num, std::string secret)
 {
     first_name = first;
     last_name = last;
     nickname = nick;
-    phone_number = phone_number;
-    darkest_secret = darkest_secret;
+    phone_number = phone_num;
+    darkest_secret = secret;
 }
 
 void Contact::display() const

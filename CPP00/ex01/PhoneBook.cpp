@@ -6,11 +6,12 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 19:20:58 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/08 06:26:56 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/08 18:15:45 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
+#include <iomanip>
 
 PhoneBook::PhoneBook()
 {
@@ -19,8 +20,6 @@ PhoneBook::PhoneBook()
 
 void PhoneBook::addContact(const Contact &contact)
 {
-	int num_contacts = this->num_contacts;
-	
 	if (num_contacts < 8)
 	{
 		contacts[num_contacts] = contact;
@@ -28,16 +27,20 @@ void PhoneBook::addContact(const Contact &contact)
 	}
 	else
 	{
-		contacts[0] = contact;
+		for (int i = 1; i < 8; i++)
+		{
+			contacts[i - 1] = contacts[i];
+		}
+		contacts[7] = contact;
 	}
 }
 
 void PhoneBook::searchContact(int index)
 {
-	if (index < 0 || index >= this->num_contacts)
+	if (index < 0 || index > num_contacts)
 	{
-		std::cout << "Contact does not exist!" << std::endl;
-		return ;
+		std::cout << "Contact does not exist!!" << std::endl;
+		return;
 	}
 	contacts[index].display();
 }

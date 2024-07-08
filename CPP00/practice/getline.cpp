@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.hpp                                      :+:      :+:    :+:   */
+/*   getline.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/03 09:07:08 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/08 17:58:32 by msumon           ###   ########.fr       */
+/*   Created: 2024/07/08 16:45:01 by msumon            #+#    #+#             */
+/*   Updated: 2024/07/08 16:45:53 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_H
-# define PHONEBOOK_H
+#include <iostream>
+#include <string>
 
-# include "Contact.hpp"
-
-void Welcome(void);
-
-class PhoneBook
+int main()
 {
-  private:
-	Contact contacts[8];
-	int num_contacts;
+    std::string line;
 
-  public:
-	PhoneBook();
-	void addContact(const Contact &contact);
-	void searchContact(int index);
-	void displayContacts();
-};
+    std::cout << "Enter a line of text: ";
+    std::getline (std::cin, line);
 
-std::string format_string(const std::string &str);
+    std::cout << "You entered: " << line << std::endl;
 
-#endif
+    return 0;
+}

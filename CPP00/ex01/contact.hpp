@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 09:07:05 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/08 06:41:37 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/08 18:00:25 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ class Contact
 
   public:
 	Contact();
-	Contact(std::string first, std::string last, std::string nickname,
-		std::string phone_number, std::string darkest_secret);
+	Contact(std::string first, std::string last, std::string nick,
+		std::string phone_num, std::string secret);
 	void display() const;
 	std::string get_first_name() const;
 	std::string get_last_name() const;

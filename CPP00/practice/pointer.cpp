@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.hpp                                      :+:      :+:    :+:   */
+/*   pointer.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/03 09:07:08 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/08 17:58:32 by msumon           ###   ########.fr       */
+/*   Created: 2024/07/08 13:10:17 by msumon            #+#    #+#             */
+/*   Updated: 2024/07/08 13:12:44 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_H
-# define PHONEBOOK_H
+#include <iostream>
 
-# include "Contact.hpp"
-
-void Welcome(void);
-
-class PhoneBook
+int main()
 {
-  private:
-	Contact contacts[8];
-	int num_contacts;
-
-  public:
-	PhoneBook();
-	void addContact(const Contact &contact);
-	void searchContact(int index);
-	void displayContacts();
-};
-
-std::string format_string(const std::string &str);
-
-#endif
+    char *ptr = new char;
+    printf("%p\n", ptr);
+    delete ptr;
+    return (0);
+}
