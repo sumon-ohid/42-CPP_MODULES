@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 09:07:05 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/05 20:05:57 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/08 06:41:37 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,39 +26,13 @@ class Contact
 	std::string darkest_secret;
 
   public:
-	Contact()
-	{
-	}
-
-	Contact(std::string first_name, std::string last_name, std::string nickname,
-		std::string phone_number,
-		std::string darkest_secret) : first_name(first_name),
-		last_name(last_name), nickname(nickname), phone_number(phone_number),
-		darkest_secret(darkest_secret)
-	{
-	}
-
-	void display() const
-	{
-		std::cout << "First Name: " << first_name << std::endl;
-		std::cout << "Last Name: " << last_name << std::endl;
-		std::cout << "Nickname: " << nickname << std::endl;
-		std::cout << "Phone Number: " << phone_number << std::endl;
-		std::cout << "Darkest Secret: " << darkest_secret << std::endl;
-	}
-
-	std::string get_first_name() const
-	{
-		return (first_name);
-	}
-	std::string get_last_name() const
-	{
-		return (last_name);
-	}
-	std::string get_nickname() const
-	{
-		return (nickname);
-	}
+	Contact();
+	Contact(std::string first, std::string last, std::string nickname,
+		std::string phone_number, std::string darkest_secret);
+	void display() const;
+	std::string get_first_name() const;
+	std::string get_last_name() const;
+	std::string get_nickname() const;
 };
 
 #endif
