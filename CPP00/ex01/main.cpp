@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:15:04 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/08 17:51:34 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/08 21:37:19 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	main(void)
 	PhoneBook	phonebook;
 
     Welcome();
-	while (true)
+	while (std::cin)
 	{
         std::cout << "--->> ";
 		std::string command;
