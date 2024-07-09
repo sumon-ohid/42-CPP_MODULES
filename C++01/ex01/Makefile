@@ -6,17 +6,17 @@
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 08:58:12 by msumon            #+#    #+#              #
-#    Updated: 2024/07/09 11:17:19 by msumon           ###   ########.fr        #
+#    Updated: 2024/07/09 11:53:58 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= Moar_brainz!
+NAME	= Moar_brainz
 CC		= c++
 FLAGS	= -Wall -Werror -Wextra -std=c++98
 HEADERS	= Zombie.hpp
 SRCS	= main.cpp \
 		  Zombie.cpp \
-		  zombiHorde.cpp \
+		  zombieHorde.cpp \
 
 OBJS	= $(SRCS:.cpp=.o)
 RM		= rm -rf
