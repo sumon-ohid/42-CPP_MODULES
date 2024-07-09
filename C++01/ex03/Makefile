@@ -6,15 +6,19 @@
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 08:58:12 by msumon            #+#    #+#              #
-#    Updated: 2024/07/09 10:34:28 by msumon           ###   ########.fr        #
+#    Updated: 2024/07/09 12:44:55 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= 
+NAME	= Unnecessary_violence
 CC		= c++
 FLAGS	= -Wall -Werror -Wextra -std=c++98
-HEADERS	= 
-SRCS	= 
+HEADERS	= Weapon.hpp HumanA.hpp HumanB.hpp
+
+SRCS	= main.cpp \
+		  Weapon.cpp \
+		  HumanA.cpp \
+		  HumanB.cpp \
 
 OBJS	= $(SRCS:.cpp=.o)
 RM		= rm -rf
