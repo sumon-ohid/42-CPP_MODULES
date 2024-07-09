@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 12:27:27 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/09 12:42:57 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/09 12:49:15 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 HumanB::HumanB(std::string name): name(name)
 { 
-    this->weapon = NULL; 
+    this->weapon = nullptr; 
 }
 
 HumanB::~HumanB()
