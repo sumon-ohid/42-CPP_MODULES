@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 12:50:27 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/09 15:12:26 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/09 16:23:33 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,15 @@ int main(int argc, char **argv)
         return 1;
     }
     
-    FileWriter fileWriter;
     std::string filename = argv[1];
     std::string target = argv[2];
     std::string source = argv[3];
-    std::string content = fileWriter.ft_reader(filename);
+    std::string content = ft_reader(filename);
+    if (content.empty())
+    {
+        std::cerr << "Empty file." << std::endl;
+        return 1;
+    }
    
     std::ofstream newFile("newfile");
     if (!newFile.is_open())
@@ -36,7 +40,7 @@ int main(int argc, char **argv)
     }
     else
     {
-        std::string replacedContent = fileWriter.ft_replace(content, target, source);
+        std::string replacedContent = ft_replace(content, target, source);
         newFile << replacedContent;
     }
     return 0;

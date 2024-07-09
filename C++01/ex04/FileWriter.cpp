@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 12:53:00 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/09 15:40:19 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/09 16:17:22 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,7 @@
 #include <sstream>
 #include <string>
 
-FileWriter::FileWriter()
-{
-}
-
-FileWriter::FileWriter(std::string filename): filename(filename)
-{
-}
-
-FileWriter::~FileWriter()
-{
-}
-
-std::string FileWriter::ft_reader(std::string filename)
+std::string ft_reader(std::string filename)
 {
     std::string content;
     std::ifstream file(filename);
@@ -47,7 +35,7 @@ std::string FileWriter::ft_reader(std::string filename)
     return content;
 }
 
-std::string FileWriter::ft_replace(std::string filename, std::string target, std::string source)
+std::string ft_replace(std::string filename, std::string target, std::string source)
 {
     std::string result;
     size_t pos = 0;

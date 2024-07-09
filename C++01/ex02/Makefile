@@ -6,12 +6,12 @@
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 08:58:12 by msumon            #+#    #+#              #
-#    Updated: 2024/07/09 12:07:57 by msumon           ###   ########.fr        #
+#    Updated: 2024/07/09 16:06:12 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= HI_THIS_IS_BRAIN
-CC		= c++
+CPP		= c++
 FLAGS	= -Wall -Werror -Wextra -std=c++98
 SRCS	= main.cpp
 
@@ -21,7 +21,7 @@ RM		= rm -rf
 all:	$(NAME)
 
 $(NAME): $(OBJS)
-		$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+		$(CPP) $(FLAGS) $(OBJS) -o $(NAME)
 
 clean:
 		$(RM) $(OBJS)

@@ -6,12 +6,12 @@
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 08:58:12 by msumon            #+#    #+#              #
-#    Updated: 2024/07/09 12:44:55 by msumon           ###   ########.fr        #
+#    Updated: 2024/07/09 16:06:12 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= Unnecessary_violence
-CC		= c++
+CPP		= c++
 FLAGS	= -Wall -Werror -Wextra -std=c++98
 HEADERS	= Weapon.hpp HumanA.hpp HumanB.hpp
 
@@ -26,7 +26,7 @@ RM		= rm -rf
 all:	$(NAME)
 
 $(NAME): $(OBJS)
-		$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+		$(CPP) $(FLAGS) $(OBJS) -o $(NAME)
 
 clean:
 		$(RM) $(OBJS)

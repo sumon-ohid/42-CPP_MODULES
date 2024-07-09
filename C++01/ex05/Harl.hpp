@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FileWriter.hpp                                     :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/09 12:52:47 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/09 16:16:46 by msumon           ###   ########.fr       */
+/*   Created: 2024/07/09 15:42:52 by msumon            #+#    #+#             */
+/*   Updated: 2024/07/09 15:47:14 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILEWRITER_HPP
-# define FILEWRITER_HPP
+#ifndef HARL_HPP
+# define HARL_HPP
 
 #include <iostream>
-#include <string>
 
-std::string ft_reader(std::string filename);
-std::string ft_replace(std::string filename, std::string target, std::string source);
+class Harl
+{
+    private:
+        void debug( void );
+        void info( void );
+        void warning( void );
+        void error( void );
+
+    public:
+        Harl();
+        ~Harl();
+        void complain( std::string level );
+
+};
 
 #endif
