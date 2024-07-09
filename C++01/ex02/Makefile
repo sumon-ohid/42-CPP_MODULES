@@ -6,15 +6,14 @@
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 08:58:12 by msumon            #+#    #+#              #
-#    Updated: 2024/07/09 10:34:25 by msumon           ###   ########.fr        #
+#    Updated: 2024/07/09 12:07:57 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= 
+NAME	= HI_THIS_IS_BRAIN
 CC		= c++
 FLAGS	= -Wall -Werror -Wextra -std=c++98
-HEADERS	= 
-SRCS	= 
+SRCS	= main.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 RM		= rm -rf
