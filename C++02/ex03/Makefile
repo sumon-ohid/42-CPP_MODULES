@@ -6,15 +6,15 @@
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 08:58:12 by msumon            #+#    #+#              #
-#    Updated: 2024/07/09 20:08:18 by msumon           ###   ########.fr        #
+#    Updated: 2024/07/10 15:24:18 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= 
+NAME	= bsp
 CPP		= c++
 FLAGS	= -Wall -Werror -Wextra -std=c++98
-HEADERS	= 
-SRCS	= 
+HEADERS	= Fixed.hpp Point.hpp
+SRCS	= main.cpp Fixed.cpp Point.cpp bsp.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 RM		= rm -rf

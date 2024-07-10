@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.hpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 09:07:08 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/08 21:25:50 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/10 15:45:59 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ class PhoneBook
 
   public:
 	PhoneBook();
-	~PhoneBook()
-	{
-	}
+	~PhoneBook();
 	void addContact(const Contact &contact);
 	void searchContact(int index);
 	void displayContacts();

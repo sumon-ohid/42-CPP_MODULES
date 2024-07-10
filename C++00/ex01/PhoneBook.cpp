@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 19:20:58 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/08 18:15:45 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/10 15:46:15 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 PhoneBook::PhoneBook()
 {
     num_contacts = 0;
+}
+PhoneBook::~PhoneBook()
+{
 }
 
 void PhoneBook::addContact(const Contact &contact)

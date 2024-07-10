@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contact.hpp                                        :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 09:07:05 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/08 21:26:13 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/10 15:45:38 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ class Contact
 	Contact();
 	Contact(std::string first, std::string last, std::string nick,
 		std::string phone_num, std::string secret);
-	~Contact()
-	{
-	}
+	~Contact();
 	void display() const;
 	std::string get_first_name() const;
 	std::string get_last_name() const;

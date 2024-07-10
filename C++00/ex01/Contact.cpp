@@ -6,13 +6,17 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 06:31:27 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/08 21:26:33 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/10 15:45:49 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
 Contact::Contact()
+{
+}
+
+Contact::~Contact()
 {
 }
 
