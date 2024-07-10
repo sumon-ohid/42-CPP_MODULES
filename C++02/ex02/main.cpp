@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/09 20:09:03 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/10 13:24:06 by msumon           ###   ########.fr       */
+/*   Created: 2024/07/09 20:08:48 by msumon            #+#    #+#             */
+/*   Updated: 2024/07/10 15:08:00 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_HPP
-# define FIXED_HPP
+#include <iostream>
+#include "Fixed.hpp"
 
-class Fixed
+int main( void )
 {
-    private:
-        int					_fixedPointValue;
-        static const int	_fractionalBits = 8;
-
-    public:
-        Fixed();
-        Fixed(const Fixed &fixed);
-        Fixed &operator=(const Fixed &fixed);
-        ~Fixed();
-        
-        int getRawBits(void) const;
-        void setRawBits(int const raw);
-};
-
-
-#endif
+    Fixed a;
+    Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+    
+    std::cout << a << std::endl;
+    std::cout << ++a << std::endl;
+    std::cout << a << std::endl;
+    std::cout << a++ << std::endl;
+    std::cout << a << std::endl;
+    
+    std::cout << b << std::endl;
+    
+    std::cout << Fixed::max( a, b ) << std::endl;
+    
+    return 0;
+}

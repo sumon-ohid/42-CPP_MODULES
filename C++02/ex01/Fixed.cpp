@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 20:09:19 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/10 11:10:20 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/10 13:36:06 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,6 @@ Fixed::Fixed(const float value)
     std::cout << "Float constructor called" << std::endl;
 }
 
-Fixed &Fixed::operator=(const Fixed &fixed)
-{
-    _fixedPointValue = fixed._fixedPointValue;
-    std::cout << "Copy assignment operator called" << std::endl;
-    return *this;
-}
-
 Fixed::~Fixed()
 {
     std::cout << "Destructor called" << std::endl;
@@ -63,4 +56,11 @@ std::ostream &operator<<(std::ostream &os, const Fixed &fixed)
 {
     os << fixed.toFloat();
     return os;
+}
+
+Fixed &Fixed::operator=(const Fixed &fixed)
+{
+    _fixedPointValue = fixed._fixedPointValue;
+    std::cout << "Copy assignment operator called" << std::endl;
+    return *this;
 }
