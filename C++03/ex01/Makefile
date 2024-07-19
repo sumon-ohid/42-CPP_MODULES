@@ -6,15 +6,15 @@
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 08:58:12 by msumon            #+#    #+#              #
-#    Updated: 2024/07/18 23:01:01 by msumon           ###   ########.fr        #
+#    Updated: 2024/07/19 15:35:08 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= a.out
 CPP		= c++
 FLAGS	= -Wall -Werror -Wextra -std=c++98
-HEADERS	= 
-SRCS	= 
+HEADERS	= ClapTrap.hpp ScavTrap.hpp
+SRCS	= main.cpp ClapTrap.cpp ScavTrap.cpp
 OBJS	= $(SRCS:.cpp=.o)
 RM		= rm -rf
 
