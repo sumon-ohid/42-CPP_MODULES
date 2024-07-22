@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 22:41:14 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/19 20:07:06 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/22 11:43:44 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 int main()
 {
     ScavTrap scavtrap;
-    ScavTrap scavTrap("Norminette");
-    scavTrap.attack("target");
+    ScavTrap scavTrap("Master yi");
+    scavTrap.attack("Yasuo");
     scavTrap.takeDamage(5);
     std::cout << scavTrap << std::endl;
     scavTrap.beRepaired(5);
@@ -27,8 +27,8 @@ int main()
     std::cout << std::endl;
     std::cout << scavTrap << std::endl;
 
-    ScavTrap scavTrap1("Moulinette");
-    scavTrap1.attack("target");
+    ScavTrap scavTrap1("Zed");
+    scavTrap1.attack("Draven");
     scavTrap1.takeDamage(5);
     scavTrap1.beRepaired(5);
     scavTrap1.guardGate();

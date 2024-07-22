@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 15:47:31 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/19 20:03:12 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/22 11:40:59 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &copy)
     return (*this);
 }
 
-void ScavTrap::attack(const std::string& target)
+void ScavTrap::attack(const std::string target)
 {
     std::cout << "ScavTrap " << "attacks " << target << ", causing " << this->getAttackDamage() << " points of damage!" << std::endl;
 }
