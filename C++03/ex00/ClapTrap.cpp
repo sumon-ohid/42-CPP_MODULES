@@ -6,11 +6,12 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 21:40:00 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/18 22:55:18 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/22 11:00:08 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include <iostream>
 
 ClapTrap::ClapTrap()
 {
@@ -68,8 +69,11 @@ void ClapTrap::takeDamage(unsigned int amount)
         std::cout << "ClapTrap " << this->name << " can not take more damage!" << std::endl;
         return ;
     }
-    hitpoints -= amount;
-    std::cout << "ClapTrap " << this->name << " take " << amount << " points of damage!" << std::endl;
+    else
+    {
+        hitpoints -= amount;
+        std::cout << "ClapTrap " << this->name << " take " << amount << " points of damage!" << std::endl;
+    }
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
