@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/25 12:22:36 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/25 18:06:42 by msumon           ###   ########.fr       */
+/*   Created: 2024/07/25 12:22:42 by msumon            #+#    #+#             */
+/*   Updated: 2024/07/25 18:03:36 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "Dog.hpp"
 #include "Animal.hpp"
-#include "Brain.hpp"
 #include <iostream>
 
-Cat::Cat() : Animal() , _brain(new Brain)
+Dog::Dog() : Animal(), _brain(new Brain)
 {
-    type = "Cat";
-    std::cout << "😺😺 Cat default Constructor Activated 😺😺" << std::endl;
+    type = "Dog";
+    std::cout << "🐶🐶 Dog default Constructor is Called 🐶🐶" << std::endl;
 }
 
-Cat::Cat(std::string type) : Animal(type)
-{
-}
-
-Cat::Cat(Cat &copy) : Animal(copy), _brain(new Brain(*copy._brain))
+Dog::Dog(std::string type) : Animal(type)
 {
 }
 
-Cat &Cat::operator=(Cat &copy)
+Dog::Dog(Dog &copy) : Animal(copy), _brain(new Brain(*copy._brain))
+{
+}
+
+Dog &Dog::operator=(Dog &copy)
 {
     if (this != &copy)
     {
@@ -40,13 +39,13 @@ Cat &Cat::operator=(Cat &copy)
     return (*this);
 }
 
-Cat::~Cat()
+Dog::~Dog()
 {
     delete _brain;
-    std::cout << "😺😺 Cat Destructor Activated 😺😺" << std::endl;
+    std::cout << "🐶🐶 Dog Destructor is Called 🐶🐶" << std::endl;
 }
 
-void Cat::makeSound() const
+void Dog::makeSound() const
 {
-    std::cout << "Cat: Mewwww Mewwww" << std::endl;
+    std::cout << "Dog: Woooof Woof" << std::endl;
 }

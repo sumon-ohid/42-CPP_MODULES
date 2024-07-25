@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                          :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/25 15:14:20 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/25 17:57:41 by msumon           ###   ########.fr       */
+/*   Created: 2024/07/25 12:22:45 by msumon            #+#    #+#             */
+/*   Updated: 2024/07/25 17:06:58 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <string>
+#include "Animal.hpp"
+#include "Brain.hpp"
 
-class Brain
+class Dog : public Animal
 {
-    protected:
-        std::string ideas[100];
+    private:
+        Brain *_brain;
 
     public:
-        Brain();
-        Brain(Brain &copy);
-        Brain &operator=(Brain &copy);
-        ~Brain();
+        Dog();
+        Dog(std::string type);
+        Dog(Dog &copy);
+        Dog &operator=(Dog &copy);
+        ~Dog();
 
-        void setIdea(int index, std::string idea);
-        std::string getIdea(int index);
+        virtual void makeSound() const;
 };

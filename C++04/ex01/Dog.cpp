@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 12:22:42 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/25 15:55:48 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/25 18:06:29 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,17 @@ Dog::Dog(std::string type) : Animal(type)
 }
 
 Dog::Dog(Dog &copy) : Animal(copy), _brain(new Brain(*copy._brain))
-{   
+{ 
 }
 
 Dog &Dog::operator=(Dog &copy)
 {
-    type = copy.type;
+    if (this != &copy)
+    {
+        delete _brain;
+        _brain = new Brain(*copy._brain);
+        Animal::operator=(copy);
+    }
     return (*this);
 }
 

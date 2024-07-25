@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 12:22:48 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/25 18:27:05 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/25 17:54:29 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 
 int main(void)
 {
+    Brain brain;
+
+    brain.setIdea(0, "I am a Brain");
+    std::cout << "Brain Idea : " << brain.getIdea(0) << std::endl;
+
     int i = 0;
     Animal *animal[10];
     
@@ -46,23 +51,7 @@ int main(void)
         delete animal[i];
         i++;
     }
-    std::cout << std::endl;
 
-    // Idea distribution
-    Brain brain;
-    i = 0;
-    while (i < 5)
-    {
-        brain.setIdea(i, "I have many New ideas");
-        i++;
-    }
-
-    i = 0;
-    while (i < 5)
-    {
-        std::cout << brain.getIdea(i) << std::endl;
-        i++;
-    }
     return (0);
 }
 
