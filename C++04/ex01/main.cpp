@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 12:22:48 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/25 15:58:59 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/25 16:32:42 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ int main(void)
     int i = 0;
     Animal *animal[10];
     
+    std::cout << std::endl;
     while (i < 5)
     {
         animal[i] = new Dog();
 
         std::cout << animal[i]->getType() << " " << std::endl;
         animal[i]->makeSound();
-        delete animal[i];
         i++;   
     }
     while (i < 10)
@@ -36,10 +36,15 @@ int main(void)
 
         std::cout << animal[i]->getType() << " " << std::endl;
         animal[i]->makeSound();
-        delete animal[i];
         i++;   
     }
-    
+    std::cout << std::endl;
+    i = 0;
+    while (i < 10)
+    {
+        delete animal[i];
+        i++;
+    }
     return (0);
 }
 
