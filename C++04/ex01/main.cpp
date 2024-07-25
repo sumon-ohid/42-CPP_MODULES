@@ -6,11 +6,12 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 12:22:48 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/25 16:32:42 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/25 16:51:43 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include <iostream>

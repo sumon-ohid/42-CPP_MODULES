@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 15:14:29 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/25 15:52:00 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/25 16:41:10 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 Brain::Brain()
 {
+    for (int i = 0; i < 100; i++)
+    {
+        ideas[i] = " Creative Idea ";
+    }
     std::cout << "🧠 Brain Constructor Brainzzzz 🧠" << std::endl;
 }
 
@@ -42,4 +46,9 @@ Brain &Brain::operator=(Brain &copy)
 Brain::~Brain()
 {
     std::cout << "🧠 Brain Destructor Brainzzzz 🧠" << std::endl;
+}
+
+void Brain::setIdea(int index, std::string ideas)
+{
+    this->ideas[index] = ideas;
 }
