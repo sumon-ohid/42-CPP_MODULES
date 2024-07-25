@@ -1,0 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Brain.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/25 15:14:29 by msumon            #+#    #+#             */
+/*   Updated: 2024/07/25 15:52:00 by msumon           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Brain.hpp"
+#include <iostream>
+
+Brain::Brain()
+{
+    std::cout << "🧠 Brain Constructor Brainzzzz 🧠" << std::endl;
+}
+
+Brain::Brain(Brain &copy)
+{
+    std::cout << "🧠 Brain Copy Constructor Brainzzzz 🧠" << std::endl;
+    for (int i = 0; i < 100; i++)
+    {
+        ideas[i] = copy.ideas[i];
+    }
+}
+
+Brain &Brain::operator=(Brain &copy)
+{
+    if (this != &copy)
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            ideas[i] = copy.ideas[i];
+        }
+    }
+    return (*this);
+}
+
+Brain::~Brain()
+{
+    std::cout << "🧠 Brain Destructor Brainzzzz 🧠" << std::endl;
+}
