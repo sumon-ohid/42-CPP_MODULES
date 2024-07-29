@@ -6,12 +6,12 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 20:09:19 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/10 15:25:06 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/29 14:12:06 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-#include "Point.hpp"
+#include <cmath>
 #include <iostream>
 
 Fixed::Fixed()
