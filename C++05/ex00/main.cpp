@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 14:14:37 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/31 13:50:10 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/31 15:52:52 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main(void)
     }
     std::cout << std::endl;
     
-    // Basic
+    // invalid
     try
     {
         Bureaucrat bono("Alex", -42);

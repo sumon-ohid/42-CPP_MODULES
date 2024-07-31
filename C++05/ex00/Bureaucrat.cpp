@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:51:32 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/31 13:46:49 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/31 15:52:32 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 Bureaucrat::Bureaucrat()
 {
     grade = 0;
-    std::cout << "✅✅ Constructor from Bureaucrate ✅✅" << std::endl;
+    //std::cout << "✅✅ Constructor from Bureaucrate ✅✅" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string _name, int _grade): name(_name), grade(_grade)
 {
-    std::cout << "➡️➡️ Constructor with Parameter ⬅️⬅️" << std::endl;
+    //std::cout << "➡️➡️ Constructor with Parameter ⬅️⬅️" << std::endl;
     if (_grade < 1)
         Bureaucrat::GradeTooHighException();
     else if (_grade > 150)
@@ -43,7 +43,7 @@ Bureaucrat::Bureaucrat(Bureaucrat &copy)
 
 Bureaucrat::~Bureaucrat()
 {
-    std::cout << "🗑️🗑️ Destructor from Bureaucrat 🗑️🗑️" << std::endl;
+    //std::cout << "🗑️🗑️ Destructor from Bureaucrat 🗑️🗑️" << std::endl;
 }
 
 void Bureaucrat::GradeTooHighException()
