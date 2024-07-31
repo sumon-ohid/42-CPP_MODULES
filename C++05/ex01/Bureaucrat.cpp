@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:51:32 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/31 13:46:49 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/31 10:15:46 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ Bureaucrat::Bureaucrat()
 
 Bureaucrat::Bureaucrat(const std::string _name, int _grade): name(_name), grade(_grade)
 {
-    std::cout << "➡️➡️ Constructor with Parameter ⬅️⬅️" << std::endl;
     if (_grade < 1)
-        Bureaucrat::GradeTooHighException();
-    else if (_grade > 150)
         Bureaucrat::GradeTooLowException();
+    else if (_grade > 150)
+        Bureaucrat::GradeTooHighException();
+    std::cout << "➡️➡️ Constructor with Parameter ⬅️⬅️" << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator=(Bureaucrat &copy)
@@ -64,22 +64,6 @@ std::string Bureaucrat::getName()
 int Bureaucrat::getGrade()
 {
     return (grade);
-}
-
-void Bureaucrat::decrement()
-{
-    if (grade >= 1 && grade < 150)
-        grade++;
-    else
-        Bureaucrat::GradeTooLowException();
-}
-
-void Bureaucrat::increment()
-{
-    if (grade > 1 && grade <= 150)
-        grade--;
-    else
-        Bureaucrat::GradeTooHighException();
 }
 
 std::ostream &operator<<(std::ostream &os, Bureaucrat &copy)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 13:49:17 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/31 13:47:33 by msumon           ###   ########.fr       */
+/*   Created: 2024/07/31 10:21:07 by msumon            #+#    #+#             */
+/*   Updated: 2024/07/31 10:24:25 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,13 @@
 
 #include <string>
 
-class Bureaucrat
+class Form
 {
     private:
         const std::string name;
-        int grade;
-    
+        bool weather;
+        const int grade_sign;
+        const int grade_exe;
     protected:
-    
     public:
-        Bureaucrat();
-        Bureaucrat(const std::string _name, int _grade);
-        Bureaucrat(Bureaucrat &copy);
-        Bureaucrat &operator=(Bureaucrat &copy);
-        ~Bureaucrat();
-
-        void GradeTooHighException();
-        void GradeTooLowException();
-        std::string getName();
-        int getGrade();
-        void increment();
-        void decrement();
 };
-
-std::ostream &operator<<(std::ostream &os, Bureaucrat &copy);

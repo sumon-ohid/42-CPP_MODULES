@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:49:17 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/31 13:47:33 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/29 14:43:41 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ class Bureaucrat
         void GradeTooLowException();
         std::string getName();
         int getGrade();
-        void increment();
-        void decrement();
 };
 
 std::ostream &operator<<(std::ostream &os, Bureaucrat &copy);
