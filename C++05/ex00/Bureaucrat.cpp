@@ -6,13 +6,12 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:51:32 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/29 15:01:36 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/31 10:15:46 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include <iostream>
-#include <stdexcept>
 
 Bureaucrat::Bureaucrat()
 {

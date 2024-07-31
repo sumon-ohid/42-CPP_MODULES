@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 14:14:37 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/29 14:52:39 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/31 10:17:20 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int main(void)
         try
         {
             Bureaucrat b1(name, grade);
-            std::cout << b1.getName() << std::endl;
-            std::cout << b1.getGrade() << std::endl;
+            std::cout << b1.getName();
+            std::cout << ", bureaucrat grade ";
+            std::cout << b1.getGrade() << "." << std::endl;
         }
         catch (std::exception &e)
         {
