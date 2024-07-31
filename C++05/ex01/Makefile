@@ -6,15 +6,15 @@
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/25 11:00:12 by msumon            #+#    #+#              #
-#    Updated: 2024/07/29 14:30:35 by msumon           ###   ########.fr        #
+#    Updated: 2024/07/31 15:54:11 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= a.out
 CPP		= c++
 FLAGS	= -Wall -Werror -Wextra -std=c++98
-HEADERS	= Bureaucrat.hpp
-SRCS	= main.cpp Bureaucrat.cpp
+HEADERS	= Bureaucrat.hpp Form.hpp
+SRCS	= main.cpp Bureaucrat.cpp Form.cpp
 OBJS	= $(SRCS:.cpp=.o)
 RM		= rm -rf
 

@@ -6,26 +6,27 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:51:32 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/31 10:15:46 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/31 16:49:42 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <iostream>
 
 Bureaucrat::Bureaucrat()
 {
     grade = 0;
-    std::cout << "✅✅ Constructor from Bureaucrate ✅✅" << std::endl;
+    //std::cout << "✅✅ Constructor from Bureaucrate ✅✅" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string _name, int _grade): name(_name), grade(_grade)
 {
+    //std::cout << "➡️➡️ Constructor with Parameter ⬅️⬅️" << std::endl;
     if (_grade < 1)
-        Bureaucrat::GradeTooLowException();
-    else if (_grade > 150)
         Bureaucrat::GradeTooHighException();
-    std::cout << "➡️➡️ Constructor with Parameter ⬅️⬅️" << std::endl;
+    else if (_grade > 150)
+        Bureaucrat::GradeTooLowException();
 }
 
 Bureaucrat &Bureaucrat::operator=(Bureaucrat &copy)
@@ -43,7 +44,7 @@ Bureaucrat::Bureaucrat(Bureaucrat &copy)
 
 Bureaucrat::~Bureaucrat()
 {
-    std::cout << "🗑️🗑️ Destructor from Bureaucrat 🗑️🗑️" << std::endl;
+    //std::cout << "🗑️🗑️ Destructor from Bureaucrat 🗑️🗑️" << std::endl;
 }
 
 void Bureaucrat::GradeTooHighException()
@@ -66,9 +67,38 @@ int Bureaucrat::getGrade()
     return (grade);
 }
 
+void Bureaucrat::decrement()
+{
+    if (grade >= 1 && grade < 150)
+        grade++;
+    else
+        Bureaucrat::GradeTooLowException();
+}
+
+void Bureaucrat::increment()
+{
+    if (grade > 1 && grade <= 150)
+        grade--;
+    else
+        Bureaucrat::GradeTooHighException();
+}
+
 std::ostream &operator<<(std::ostream &os, Bureaucrat &copy)
 {
     os << copy.getGrade();
     os << copy.getName();
     return (os);
+}
+
+void Bureaucrat::signForm(Form &form)
+{
+    try 
+    {
+        form.beSigned(*this);
+        std::cout << name << " signs " << form.getName() << std::endl;
+    }
+    catch(const std::exception &e)
+    {
+        std::cerr << name << " cannot sign " << form.getName() << " because " << e.what() << '\n';
+    }   
 }

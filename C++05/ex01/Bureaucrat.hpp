@@ -6,15 +6,16 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:49:17 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/29 14:43:41 by msumon           ###   ########.fr       */
+/*   Updated: 2024/07/31 18:26:37 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
+#include "Form.hpp"
 #include <string>
 
-class Bureaucrat
+class Bureaucrat : public Form
 {
     private:
         const std::string name;
@@ -33,6 +34,9 @@ class Bureaucrat
         void GradeTooLowException();
         std::string getName();
         int getGrade();
+        void increment();
+        void decrement();
+        void signForm(Form &form);
 };
 
 std::ostream &operator<<(std::ostream &os, Bureaucrat &copy);
