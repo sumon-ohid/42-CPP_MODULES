@@ -6,16 +6,17 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:51:32 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/01 11:08:40 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/01 11:45:46 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 #include <iostream>
 
-Bureaucrat::Bureaucrat()
+Bureaucrat::Bureaucrat() : name("Default"), grade(0)
 {
-    grade = 0;
     //std::cout << "✅✅ Constructor from Bureaucrate ✅✅" << std::endl;
 }
 
@@ -61,7 +62,7 @@ std::string Bureaucrat::getName()
     return (name);
 }
 
-int Bureaucrat::getGrade()
+int Bureaucrat::getGrade() const
 {
     return (grade);
 }
@@ -87,4 +88,30 @@ std::ostream &operator<<(std::ostream &os, Bureaucrat &copy)
     os << copy.getGrade();
     os << copy.getName();
     return (os);
+}
+
+void Bureaucrat::signForm(AForm &form)
+{
+    try 
+    {
+        form.beSigned(*this);
+        std::cout << name << " signs " << form.getName() << std::endl;
+    }
+    catch(const std::exception &e)
+    {
+        std::cerr << name << " cannot sign " << form.getName() << " because " << e.what() << '\n';
+    }   
+}
+
+void Bureaucrat::executeForm(const AForm &form) const
+{
+    try
+    {
+        form.execute(*this);
+        std::cout << name << " executes " << form.getName() << std::endl;
+    }
+    catch(const std::exception &e)
+    {
+        std::cerr << name << " cannot execute " << form.getName() << " because " << e.what() << '\n';
+    }
 }
