@@ -6,14 +6,14 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:51:32 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/01 11:08:40 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/01 16:34:54 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include <iostream>
 
-Bureaucrat::Bureaucrat()
+Bureaucrat::Bureaucrat() : name("DEFAULT")
 {
     grade = 0;
     //std::cout << "✅✅ Constructor from Bureaucrate ✅✅" << std::endl;

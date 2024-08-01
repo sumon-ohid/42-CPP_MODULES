@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:15:59 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/01 11:40:52 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/01 15:39:43 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137)
 {
-    this->target = "default";
+    target = "default";
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string _name) : AForm(_name, 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string _target) : AForm(_target, 145, 137)
 {
-    this->target = _name;
+    target = _target;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm &copy) : AForm(copy)
 {
-    this->target = copy.target;
+    target = copy.target;
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm &copy)
@@ -46,22 +46,20 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
     std::ofstream file(target + "_shrubbery");
     if (!file)
-        throw std::runtime_error("Failed to create file.");
+        std::cerr << "Failed to create file." << std::endl;
     file << "      /\\      " << std::endl;
     file << "     /\\*\\     " << std::endl;
-    file << "    /\\0\\*\\    " << std::endl;
+    file << "    /\\*\\*\\    " << std::endl;
     file << "   /*/\\/\\/\\   " << std::endl;
-    file << "  /\\0\\/\\*\\/\\  " << std::endl;
+    file << "  /\\*\\/\\*\\/\\  " << std::endl;
     file << " /\\*\\/\\*\\/\\/\\ " << std::endl;
-    file << "/\\0\\/\\/*/\\/0/\\" << std::endl;
+    file << "/\\*\\/\\/*/\\/*/\\" << std::endl;
     file << "      ||      " << std::endl;
     file << "      ||      " << std::endl;
     file << "      ||      " << std::endl;
-    file << std::endl;
     file << "      ||      " << std::endl;
     file << "      ||      " << std::endl;
     file << "      ||      " << std::endl;
-    file << std::endl;
     file << "      ||      " << std::endl;
     file << "      ||      " << std::endl;
     file << "      ||      " << std::endl;

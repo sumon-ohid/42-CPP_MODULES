@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 14:14:37 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/01 12:09:50 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/01 15:34:30 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,38 +19,37 @@
 
 int main(void)
 {
-    Bureaucrat Shrub("Shrub", 1); 
+    Bureaucrat Shrub("Shrub", 10);
     
     try 
     {
         {
             std::cout << "*** Shrubbery ***" << std::endl;
             ShrubberyCreationForm SForm("Home");
-            SForm.beSigned(Shrub);
             Shrub.signForm(SForm);
             Shrub.executeForm(SForm);
+            std::cout << std::endl;
+
+            Shrub.signForm(SForm);
             std::cout << std::endl;
         }
         {
             std::cout << "*** Shrubbery ***" << std::endl;
-            ShrubberyCreationForm SForm("School");
-            SForm.beSigned(Shrub);
-            Shrub.signForm(SForm);
-            Shrub.executeForm(SForm);
+            ShrubberyCreationForm SForm1("School");
+            Shrub.signForm(SForm1);
+            Shrub.executeForm(SForm1);
             std::cout << std::endl;
         }
         {
             std::cout << "*** Shrubbery ***" << std::endl;
-            ShrubberyCreationForm SForm("Office");
-            SForm.beSigned(Shrub);
-            Shrub.signForm(SForm);
-            Shrub.executeForm(SForm);
+            ShrubberyCreationForm SForm2("Office");
+            Shrub.signForm(SForm2);
+            Shrub.executeForm(SForm2);
             std::cout << std::endl;
         }
         {
             std::cout << "*** Robotomy ***" << std::endl;
             RobotomyRequestForm RForm("Home");
-            RForm.beSigned(Shrub);
             Shrub.signForm(RForm);
             Shrub.executeForm(RForm);
             std::cout << std::endl;
@@ -58,7 +57,6 @@ int main(void)
         {
             std::cout << "*** Presidential ***" << std::endl;
             PresidentialPardonForm PForm("Home");
-            PForm.beSigned(Shrub);
             Shrub.signForm(PForm);
             Shrub.executeForm(PForm);
             std::cout << std::endl;

@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 14:14:37 by msumon            #+#    #+#             */
-/*   Updated: 2024/07/31 18:34:57 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/01 15:12:17 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,50 @@
 
 int main(void)
 {
-    Bureaucrat bureaucrat("Sami", 10);
-    Form form("Nebula", 150, 150);
-
     try
     {
-        bureaucrat.decrement();
-        form.beSigned(bureaucrat);
+        Bureaucrat bureaucrat("Sami", 1);
+        Form form("Nebula", 15, 15);
+        bureaucrat.increment();
+        bureaucrat.signForm(form);
     }
     catch(const std::exception &e)
     {
         std::cerr << e.what() << '\n';
     }
-
-    bureaucrat.signForm(form);
-
+    try
+    {
+        Bureaucrat bureaucrat("Sopppy", 10);
+        Form form("Nebula", 15, 15);
+        bureaucrat.decrement();
+        bureaucrat.signForm(form);
+    }
+    catch(const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    try
+    {
+        Bureaucrat bureaucrat("Sopppy", 10);
+        Form form("Nebula", 15, 15);
+        bureaucrat.decrement();
+        bureaucrat.signForm(form);
+    }
+    catch(const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    try
+    {
+        Bureaucrat bureaucrat("Delip", 120);
+        Form form("Nebula", 15, 15);
+        bureaucrat.decrement();
+        bureaucrat.signForm(form);
+    }
+    catch(const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
     return (0);
 }

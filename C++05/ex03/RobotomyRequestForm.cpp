@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 11:39:57 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/01 11:40:46 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/01 15:40:00 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 
 RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", 72, 45)
 {
-    this->target = "default";
+    target = "default";
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string _name) : AForm(_name, 72, 45)
+RobotomyRequestForm::RobotomyRequestForm(std::string _target) : AForm(_target, 72, 45)
 {
-    this->target = _name;
+    target = _target;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm &copy) : AForm(copy)
 {
-    this->target = copy.target;
+    target = copy.target;
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm &copy)

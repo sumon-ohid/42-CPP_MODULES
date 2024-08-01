@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:14:43 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/01 12:23:55 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/01 15:48:18 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ Intern::~Intern()
 
 AForm *Intern::makeForm(std::string form, std::string target)
 {   
-    std::string forms[3] = {"robotomy request", "shrubbery creation", "presidential pardon"};
+    std::string forms[3] = {"RobotomyRequestForm", "ShrubberyCreationForm", "PresidentialPardonForm"};
 
     switch (form.compare(forms[0]))
     {

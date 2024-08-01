@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 14:14:37 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/01 12:25:10 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/01 15:48:01 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int main(void)
         {
             std::cout << "*** Shrubbery ***" << std::endl;
             ShrubberyCreationForm SForm("Home");
-            SForm.beSigned(Shrub);
             Shrub.signForm(SForm);
             Shrub.executeForm(SForm);
             std::cout << std::endl;
@@ -35,7 +34,6 @@ int main(void)
         {
             std::cout << "*** Robotomy ***" << std::endl;
             RobotomyRequestForm RForm("Home");
-            RForm.beSigned(Shrub);
             Shrub.signForm(RForm);
             Shrub.executeForm(RForm);
             std::cout << std::endl;
@@ -43,7 +41,6 @@ int main(void)
         {
             std::cout << "*** Presidential ***" << std::endl;
             PresidentialPardonForm PForm("Home");
-            PForm.beSigned(Shrub);
             Shrub.signForm(PForm);
             Shrub.executeForm(PForm);
             std::cout << std::endl;
@@ -51,10 +48,20 @@ int main(void)
         {
             std::cout << "*** Intern ***" << std::endl;
             Intern intern;
-            AForm *form = intern.makeForm("shrubbery creation", "Home");
+            AForm *form = intern.makeForm("ShrubberyCreationForm", "Intern");
             Shrub.signForm(*form);
             Shrub.executeForm(*form);
             std::cout << std::endl;
+            delete form;
+        }
+        {
+            std::cout << "*** Intern ***" << std::endl;
+            Intern intern;
+            AForm *form = intern.makeForm("Invalid", "Intern");
+            Shrub.signForm(*form);
+            Shrub.executeForm(*form);
+            std::cout << std::endl;
+            delete form;
         }
     }
     catch (std::exception &e)

@@ -6,13 +6,14 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 10:21:04 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/01 12:07:47 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/01 15:37:40 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 #include <iostream>
+#include <stdexcept>
 
 AForm::AForm() : signed_AForm(false), grade_sign(0), grade_exe(0)
 {
@@ -43,8 +44,11 @@ AForm::AForm(AForm &copy) : name(copy.name), signed_AForm(copy.signed_AForm), gr
 
 void AForm::beSigned(Bureaucrat &bureaucrat)
 {
+    if (signed_AForm)
+        throw std::runtime_error("Already Signed.");
     if (bureaucrat.getGrade() > grade_sign)
-        throw std::runtime_error("Grade is too Low to sign the AForm");
+        throw std::runtime_error("Grade is too Low to sign the AForm.");
+    signed_AForm = true;
 }
 
 std::string AForm::getName() const

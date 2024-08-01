@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:51:32 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/01 11:45:46 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/01 15:35:39 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ void Bureaucrat::signForm(AForm &form)
     try 
     {
         form.beSigned(*this);
-        std::cout << name << " signs " << form.getName() << std::endl;
+        if (form.getSigned())
+            std::cout << name << " signs " << form.getName() << std::endl;
     }
     catch(const std::exception &e)
     {
