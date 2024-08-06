@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:15:59 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/01 15:39:43 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/01 16:54:07 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
     std::ofstream file(target + "_shrubbery");
     if (!file)
-        std::cerr << "Failed to create file." << std::endl;
+        return ;
     file << "      /\\      " << std::endl;
     file << "     /\\*\\     " << std::endl;
     file << "    /\\*\\*\\    " << std::endl;
