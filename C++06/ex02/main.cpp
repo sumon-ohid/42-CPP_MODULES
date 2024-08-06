@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 21:18:34 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/06 21:59:10 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/06 22:25:24 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void identify(Base& p)
 
 void identify(Base* p)
 {
-    if (dynamic_cast<A*>(p))
+    if (dynamic_cast<A*>(p) != NULL)
         std::cout << "A" << std::endl;
-    else if (dynamic_cast<B*>(p))
+    else if (dynamic_cast<B*>(p) != NULL)
         std::cout << "B" << std::endl;
-    else if (dynamic_cast<C*>(p))
+    else if (dynamic_cast<C*>(p) != NULL)
         std::cout << "C" << std::endl;
 }
 
