@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 12:00:20 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/07 14:46:44 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/07 15:08:53 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,6 @@ int ScalarConverter::string_to_int(std::string input)
 
 void ScalarConverter::string_to_float(std::string input)
 {
-    if (!input.empty() && input[input.size() - 1] == 'f')
-    {
-        input.erase(input.size() - 1);
-    }
     if (input == "nan" || input == "-inf" || input == "+inf" || input == "inf")
     {
         std::cout << "float: " << input << "f" << std::endl;
@@ -77,6 +73,10 @@ void ScalarConverter::string_to_float(std::string input)
     }
     else
     {
+        if (!input.empty() && input[input.size() - 1] == 'f')
+        {
+            input.erase(input.size() - 1);
+        }
         std::stringstream ss(input);
         float f;
         ss >> f;
@@ -92,10 +92,6 @@ void ScalarConverter::string_to_float(std::string input)
 
 void ScalarConverter::string_to_double(std::string input)
 {
-    if (!input.empty() && input[input.size() - 1] == 'f')
-    {
-        input.erase(input.size() - 1);
-    }
     if (input == "nan" || input == "-inf" || input == "+inf" || input == "inf")
     {
         std::cout << "double: " << input << std::endl;
@@ -103,6 +99,10 @@ void ScalarConverter::string_to_double(std::string input)
     }
     else
     {
+        if (!input.empty() && input[input.size() - 1] == 'f')
+        {
+            input.erase(input.size() - 1);
+        }
         std::stringstream ss(input);
         double d;
         ss >> d;
