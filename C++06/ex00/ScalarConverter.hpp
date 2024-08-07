@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 12:00:23 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/07 11:27:26 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/07 12:58:19 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
+#include <stdexcept>
 
 class ScalarConverter
 {

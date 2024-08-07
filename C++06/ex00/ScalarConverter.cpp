@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 12:00:20 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/07 11:35:59 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/07 13:06:05 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,26 +43,27 @@ ScalarConverter &ScalarConverter::operator=(ScalarConverter const &copy)
 
 int ScalarConverter::string_to_int(std::string input)
 {
-    int result = 0;
-    int sign = 1;
-    size_t i = 0;
-    if (input[i] == '-' || input[i] == '+')
+    if (!input.empty() && input[input.size() - 1] == 'f')
     {
-        if (input[i] == '-')
-            sign = -1;
-        i++;
+        input.erase(input.size() - 1);
     }
-    for (; i < input.length(); ++i)
+    std::stringstream ss(input);
+    float result;
+    ss >> result;
+    if (ss.fail() || !ss.eof())
     {
-        if (!std::isdigit(input[i]))
-            throw std::invalid_argument("impossible");
-        result = result * 10 + (input[i] - '0');
+        throw std::invalid_argument("impossible");
     }
-    return sign * result;
+    int i = static_cast<int>(result);
+    return i;
 }
 
 void ScalarConverter::string_to_float(std::string input)
 {
+    if (!input.empty() && input[input.size() - 1] == 'f')
+    {
+        input.erase(input.size() - 1);
+    }
     if (input == "nan" || input == "-inf" || input == "+inf" || input == "inf")
     {
         std::cout << "float: " << input << "f" << std::endl;
@@ -70,7 +71,13 @@ void ScalarConverter::string_to_float(std::string input)
     }
     else
     {
-        float f = static_cast<float>(string_to_int(input));
+        std::stringstream ss(input);
+        float f;
+        ss >> f;
+        if (ss.fail() || !ss.eof())
+        {
+            throw std::invalid_argument("impossible");
+        }
         std::cout << std::fixed << std::setprecision(1);
         std::cout << "float: " << f << "f" << std::endl;
     }
@@ -78,6 +85,10 @@ void ScalarConverter::string_to_float(std::string input)
 
 void ScalarConverter::string_to_double(std::string input)
 {
+    if (!input.empty() && input[input.size() - 1] == 'f')
+    {
+        input.erase(input.size() - 1);
+    }
     if (input == "nan" || input == "-inf" || input == "+inf" || input == "inf")
     {
         std::cout << "double: " << input << std::endl;
@@ -85,7 +96,13 @@ void ScalarConverter::string_to_double(std::string input)
     }
     else
     {
-        double d = static_cast<double>(string_to_int(input));
+        std::stringstream ss(input);
+        double d;
+        ss >> d;
+        if (ss.fail() || !ss.eof())
+        {
+            throw std::invalid_argument("impossible");
+        }
         std::cout << std::fixed << std::setprecision(1);
         std::cout << "double: " << d << std::endl;
     }
