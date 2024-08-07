@@ -6,13 +6,14 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:09:47 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/06 21:11:32 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/07 12:35:53 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
+#include <stdint.h>
 #include <string>
 
 struct Data

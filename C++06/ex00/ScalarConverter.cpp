@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 12:00:20 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/06 22:21:14 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/07 11:35:59 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,102 +61,76 @@ int ScalarConverter::string_to_int(std::string input)
     return sign * result;
 }
 
-float ScalarConverter::string_to_float(std::string input)
+void ScalarConverter::string_to_float(std::string input)
 {
-    float result = 0;
-    float sign = 1;
-    size_t i = 0;
-    if (input[i] == '-' || input[i] == '+')
+    if (input == "nan" || input == "-inf" || input == "+inf" || input == "inf")
     {
-        if (input[i] == '-')
-            sign = -1;
-        i++;
+        std::cout << "float: " << input << "f" << std::endl;
+        return;
     }
-    for (; i < input.length(); ++i)
+    else
     {
-        if (!std::isdigit(input[i]) && input[i] != '.')
-            throw std::invalid_argument(input + "f");
-        if (input[i] == '.')
-            break;
-        result = result * 10 + (input[i] - '0');
+        float f = static_cast<float>(string_to_int(input));
+        std::cout << std::fixed << std::setprecision(1);
+        std::cout << "float: " << f << "f" << std::endl;
     }
-    float decimal = 0.1;
-    for (++i; i < input.length(); ++i)
-    {
-        if (!std::isdigit(input[i]))
-            throw std::invalid_argument(input + "f");
-        result += (input[i] - '0') * decimal;
-        decimal *= 0.1;
-    }
-    return sign * result;
 }
 
-double ScalarConverter::string_to_double(std::string input)
+void ScalarConverter::string_to_double(std::string input)
 {
-    double result = 0;
-    double sign = 1;
-    size_t i = 0;
-    if (input[i] == '-' || input[i] == '+')
+    if (input == "nan" || input == "-inf" || input == "+inf" || input == "inf")
     {
-        if (input[i] == '-')
-            sign = -1;
-        i++;
+        std::cout << "double: " << input << std::endl;
+        return;
     }
-    for (; i < input.length(); ++i)
+    else
     {
-        if (!std::isdigit(input[i]) && input[i] != '.')
-            throw std::invalid_argument(input);
-        if (input[i] == '.')
-            break;
-        result = result * 10 + (input[i] - '0');
+        double d = static_cast<double>(string_to_int(input));
+        std::cout << std::fixed << std::setprecision(1);
+        std::cout << "double: " << d << std::endl;
     }
-    double decimal = 0.1;
-    for (++i; i < input.length(); ++i)
-    {
-        if (!std::isdigit(input[i]))
-            throw std::invalid_argument(input);
-        result += (input[i] - '0') * decimal;
-        decimal *= 0.1;
-    }
-    return sign * result;
 }
 
 void ScalarConverter::convert(std::string input)
 {
-    try {
+    try
+    {
         char c = string_to_int(input);
         if (c >= 32 && c <= 126)
-            std::cout << "char: " << c << std::endl;
+            std::cout << "char: " << "'" << c << "'" << std::endl;
         else
-            throw std::invalid_argument("Char: Non displayable");
+            throw std::invalid_argument("Non displayable");
     }
-    catch(const std::exception& e) {
+    catch(const std::exception& e)
+    {
         std::cerr << "char: " << e.what() << std::endl;
     }
 
-    try {
+    try
+    {
         int i = string_to_int(input);
         std::cout << "int: " << i << std::endl;
     }
-    catch(const std::exception& e) {
+    catch(const std::exception& e)
+    {
         std::cerr << "int: " << e.what() << std::endl;
     }
 
-    try {
-        float f = string_to_float(input);
-        std::cout << std::fixed << std::setprecision(1);
-        std::cout << "float: " << f << std::endl;
+    try 
+    {
+        string_to_float(input);
     }
-    catch(const std::exception& e) {
+    catch(const std::exception& e)
+    {
         std::cerr << "float: " << e.what() << std::endl;
     }
 
-    try {
-        double d = string_to_double(input);
-        std::cout << std::fixed << std::setprecision(1);
-        std::cout << "double: " << d << std::endl;
+    try 
+    {
+        string_to_double(input);
     }
-    catch(const std::exception& e) {
+    catch(const std::exception& e) 
+    {
         std::cerr << "double: " << e.what() << std::endl;
     }
 }

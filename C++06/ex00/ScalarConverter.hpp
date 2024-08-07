@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 12:00:23 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/06 22:01:23 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/07 11:27:26 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ class ScalarConverter
     
         void convert(std::string input);
         int string_to_int(std::string input);
-        double string_to_double(std::string input);
-        float string_to_float(std::string input);
+        void string_to_double(std::string input);
+        void string_to_float(std::string input);
 };
