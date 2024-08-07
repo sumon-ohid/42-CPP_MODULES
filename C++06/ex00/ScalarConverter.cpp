@@ -6,12 +6,14 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 12:00:20 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/07 13:06:05 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/07 14:46:44 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include <climits>
 #include <iomanip>
+#include <iostream>
 
 ScalarConverter::ScalarConverter()
 {
@@ -55,6 +57,10 @@ int ScalarConverter::string_to_int(std::string input)
         throw std::invalid_argument("impossible");
     }
     int i = static_cast<int>(result);
+    if (i == INT_MIN || i == INT_MAX)
+    {
+        throw std::invalid_argument("impossible");
+    }
     return i;
 }
 
@@ -78,8 +84,9 @@ void ScalarConverter::string_to_float(std::string input)
         {
             throw std::invalid_argument("impossible");
         }
+        float f2 = static_cast<float>(f);
         std::cout << std::fixed << std::setprecision(1);
-        std::cout << "float: " << f << "f" << std::endl;
+        std::cout << "float: " << f2 << "f" << std::endl;
     }
 }
 
@@ -112,9 +119,12 @@ void ScalarConverter::convert(std::string input)
 {
     try
     {
-        char c = string_to_int(input);
-        if (c >= 32 && c <= 126)
+        int i = string_to_int(input);
+        if (i >= 32 && i <= 126)
+        {
+            char c = static_cast<char>(i);
             std::cout << "char: " << "'" << c << "'" << std::endl;
+        }
         else
             throw std::invalid_argument("Non displayable");
     }
