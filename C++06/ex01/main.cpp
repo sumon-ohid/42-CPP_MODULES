@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:09:41 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/06 21:42:07 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/07 15:25:41 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main(void)
     uintptr_t serialized = Serializer::serialize(&data);
 
     std::cout << "\033[32m**** Data in Serialized ****" << std::endl;
-    std::cout << "String1: " << data._string1 << std::endl;
+    std::cout << "String1: " << &data._string1 << std::endl;
     std::cout << "String2: " << data._string2 << std::endl;
     std::cout << "Number1: " << data._nubmer1 << std::endl;
     std::cout << "Number2: " << data._nubmer2 << std::endl;
@@ -37,7 +37,7 @@ int main(void)
     Data *deserialized = Serializer::deserialize(serialized);
 
     std::cout << "\033[34m**** Data in Deserialized **** " << std::endl;
-    std::cout << "String1: " << deserialized->_string1 << std::endl;
+    std::cout << "String1: " << &deserialized->_string1 << std::endl;
     std::cout << "String2: " << deserialized->_string2 << std::endl;
     std::cout << "Number1: " << deserialized->_nubmer1 << std::endl;
     std::cout << "Number2: " << deserialized->_nubmer2 << std::endl;
