@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:08:58 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/08 12:11:51 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/08 14:54:39 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 template <typename T>
 Array<T>::Array()
 {
-    elements = NULL;
+    elements = new T[0];    
     n = 0;
 }
 
@@ -26,12 +26,12 @@ Array<T>::Array(unsigned int n) : n(n)
 }
 
 template <typename T>
-Array<T>::Array(const Array &other) : n(other.n)
+Array<T>::Array(Array &copy) : n(copy.n)
 {
     elements = new T[n];
     for (unsigned int i = 0; i < n; ++i)
     {
-        elements[i] = other.elements[i];
+        elements[i] = copy.elements[i];
     }
 }
 
@@ -42,16 +42,16 @@ Array<T>::~Array()
 }
 
 template <typename T>
-Array<T> &Array<T>::operator=(const Array &other)
+Array<T> &Array<T>::operator=(Array &copy)
 {
-    if (this != &other)
+    if (this != &copy)
     {
         delete[] elements;
-        n = other.n;
+        n = copy.n;
         elements = new T[n];
         for (unsigned int i = 0; i < n; ++i)
         {
-            elements[i] = other.elements[i];
+            elements[i] = copy.elements[i];
         }
     }
     return *this;
@@ -59,16 +59,6 @@ Array<T> &Array<T>::operator=(const Array &other)
 
 template <typename T>
 T &Array<T>::operator[](unsigned int index)
-{
-    if (index >= n)
-    {
-        throw std::runtime_error ("Index out of range");
-    }
-    return elements[index];
-}
-
-template <typename T>
-const T &Array<T>::operator[](unsigned int index) const 
 {
     if (index >= n)
     {
