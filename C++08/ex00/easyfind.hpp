@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 19:15:31 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/11 19:23:54 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/12 11:21:05 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int easyfind(T &container, int n)
         throw std::exception();
     return *it;
 }
-
+ 
 template <typename T>
 void testEasyfind(T &container, int n)
 {
@@ -36,6 +36,6 @@ void testEasyfind(T &container, int n)
     }
     catch (std::exception &e)
     {
-        std::cout << "Not found" << std::endl;
+        std::cerr << n << " Not found" << std::endl;
     }
 }
