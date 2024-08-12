@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:42:21 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/12 14:34:25 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/12 15:15:33 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,7 @@ int main()
 
     std::cout << " *** Creating Span with limit 10000 ***" << std::endl;
     Span sp2 = Span(10000);
-    
-    // Generate 10000 random numbers and add them to numbers vector
-    std::srand(std::time(0));
-    std::vector<int> numbers;
-    for (int i = 0; i < 10000; ++i)
-    {
-        numbers.push_back(std::rand());
-    }
-    
-    // Add the numbers to the Span
-    std::vector<int>::iterator it = numbers.begin();
-    while (it != numbers.end())
-    {
-        sp2.addNumber(*it);
-        it++;
-    }
-
+    sp2.addManyNumbers(10000);
     try
     {
         std::cout << "Shortest Span: " << sp2.shortestSpan() << std::endl;

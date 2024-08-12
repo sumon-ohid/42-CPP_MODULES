@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:42:24 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/12 14:33:40 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/12 15:14:51 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void Span::addNumber(int n)
 int Span::shortestSpan()
 {
     if (num.size() <= 1)
-        throw std::runtime_error("Error: Not enough elements short");
+        throw std::runtime_error("Error: Not enough elements");
     std::sort(num.begin(), num.end());
     int min = num[1] - num[0];
     for (unsigned int i = 1; i < num.size(); i++)
@@ -71,4 +71,20 @@ int Span::longestSpan()
     std::sort(num.begin(), num.end());
     int max = num[num.size() - 1] - num[0];
     return max;
+}
+
+void Span::addManyNumbers(unsigned int _howMany)
+{
+    if (_howMany == 0 || _howMany > INT_MAX || _howMany > N)
+    {
+        std::cerr << "Error: Impossible" << std::endl;
+        return;
+    }
+    std::srand(std::time(0));
+    for (unsigned int i = 0; i < _howMany; ++i)
+    {
+        if (num.size() >= N)
+            throw std::runtime_error("Error: Span is full");
+        num.push_back(std::rand());
+    }
 }
