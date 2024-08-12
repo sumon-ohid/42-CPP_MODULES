@@ -6,14 +6,14 @@
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/08 10:26:53 by msumon            #+#    #+#              #
-#    Updated: 2024/08/12 11:40:57 by msumon           ###   ########.fr        #
+#    Updated: 2024/08/12 16:47:20 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= 
+NAME		= stack
 CXX			= c++
 CXXFLAGS	= -Wall -Werror -Wextra -std=c++98 -MMD -MP -pedantic
-HEADERS		= 
+HEADERS		= MutantStack.hpp
 SRCS		= main.cpp
 OBJS		= $(SRCS:.cpp=.o)
 DEPS		= $(OBJS:.o=.d)
