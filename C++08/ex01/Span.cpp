@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:42:24 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/12 12:18:49 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/12 14:33:40 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,25 @@
 
 Span::Span()
 {
-    std::cout << "Default Constructor !" << std::endl;
     N = 0;
 }
 
 Span::~Span()
 {
-    std::cout << "Destructor Called" << std::endl;
 }
 
 Span::Span(unsigned int N)
 {
-    std::cout << "Parameterized Constructor !" << std::endl;
-    
     this->N = N;
 }
 
 Span::Span(const Span &copy)
-{
-    std::cout << "Copy Constructor !" << std::endl;
-    
+{    
     *this = copy;
 }
 
 Span &Span::operator=(const Span &copy)
-{
-    std::cout << "Assignation Operator !" << std::endl;
-    
+{    
     if (this == &copy)
         return (*this);
     N = copy.N;
