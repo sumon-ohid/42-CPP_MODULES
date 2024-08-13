@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:20:29 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/12 16:42:59 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/13 09:41:03 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int main()
 {
     // Testing with MutantStack
-    std::cout << "Testing with MutantStack:" << std::endl;
+    std::cout << std::endl;
+    std::cout << "** Testing with MutantStack: **" << std::endl;
     MutantStack<int> mstack;
     mstack.push(5);
     mstack.push(17);
@@ -38,7 +39,8 @@ int main()
     std::stack<int> s(mstack);
 
     // Testing with std::list
-    std::cout << "Testing with std::list:" << std::endl;
+    std::cout << std::endl;
+    std::cout << "** Testing with std::list: **" << std::endl;
     std::list<int> lst;
     lst.push_back(5);
     lst.push_back(17);
@@ -58,6 +60,5 @@ int main()
         std::cout << *lit << std::endl;
         ++lit;
     }
-
     return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:19:44 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/12 16:48:09 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/13 09:29:07 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ class MutantStack : public std::stack<T>
             return (*this);
         }
 
+        // define iterator
         typedef typename std::stack<T>::container_type::iterator iterator;
 
         iterator begin()
