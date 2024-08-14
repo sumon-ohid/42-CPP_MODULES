@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 10:06:11 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/14 11:30:17 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/14 17:03:07 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,26 +67,37 @@ std::string* data_extractor(const std::string& str, int &line_count)
     return ret;
 }
 
+bool is_valid_date(const std::string &date)
+{
+    if (date.length() != 10)
+        return false;
+    if (date[4] != '-' || date[7] != '-')
+        return false;
+    int year = atoi(date.substr(0, 4).c_str());
+    int month = atoi(date.substr(5, 2).c_str());
+    int day = atoi(date.substr(8, 2).c_str());
+
+    if (month < 1 || month > 12 || day < 1 || day > 31)
+        return false;
+    bool is_leap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    int days_in_month[] = {31, (is_leap ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    return day <= days_in_month[month - 1];
+}
+
 std::string *get_dates(std::string *data, int size, int flag)
 {
+    (void)flag;
     std::string *dates = new std::string[size];
     for (int i = 0; i < size; i++)
     {
         if (i == size - 1)
             break;
-        dates[i] = data[i + 1].substr(0, 10);
-        if (flag == 1)
+        if (is_valid_date(data[i + 1].substr(0, 10)))
+            dates[i] = data[i + 1].substr(0, 10);
+        else
         {
-            if (dates[i].size() != 10)
-            {
-                dates[i] = "Error:";
-                continue;
-            }
-            else if (dates[i][4] != '-' || dates[i][7] != '-')
-            {
-                dates[i] = "Error:";
-                continue;
-            }
+            dates[i] = "Error: bad input => " + data[i + 1].substr(0, 10);
+            continue;
         }
     }
     return dates;
@@ -106,7 +117,7 @@ std::string *get_values(std::string *data, int size, int flag)
                 j++;
             if (j == data[i + 1].size() || data[i + 1][j] != '|')
             {
-                values[i] = "Error: bad input => " + data[i + 1];
+                values[i] = "Error: bad input => ";
                 continue;
             }
             values[i] = data[i + 1].substr(j + 1);
@@ -116,7 +127,7 @@ std::string *get_values(std::string *data, int size, int flag)
                 values[i] = "Error: not a positive number.";
                 continue;
             }
-            else if (f > 2147483647.0)
+            else if (f > 1000)
             {
                 values[i] = "Error: too large a number.";
                 continue;
@@ -141,19 +152,33 @@ void make_multimap(std::string *dates, std::string *values, int size, std::multi
     }
 }
 
-void search_data(std::string *dates, std::string *values, int size, std::multimap<std::string, float> &bitcoin)
+void search_data(std::string *dates, std::string *values, const std::multimap<std::string, float> &bitcoin)
 {
-    std::multimap<std::string, float>::iterator it;
-    for (it = bitcoin.begin(); it != bitcoin.end(); it++)
+    int size = 0;
+    while (dates[size] != "")
+        size++;
+    for (int i = 0; i < size; i++)
     {
-        for (int i = 0; i < size; i++)
+        float value = std::atof(values[i].c_str());
+        std::multimap<std::string, float>::const_iterator it = bitcoin.lower_bound(dates[i]);
+        if (it == bitcoin.end() || it->first != dates[i])
         {
-            if (it->first == dates[i])
+            if (it != bitcoin.begin())
             {
-                float f = atof(values[i].c_str());
-                values[i] = std::tostring(f * it->second);
-                std::cout << dates[i] << " " << std::fixed << std::setprecision(2) << values[i] << std::endl;
+                --it;
             }
         }
+        if (values[i] == "Error: bad input => " | values[i] == "Error: not a positive number." || values[i] == "Error: too large a number.")
+        {
+            std::cerr << values[i] << std::endl;
+            continue;
+        }
+        if (dates[i] == "Error: bad input => ")
+        {
+            std::cerr << dates[i] << std::endl;
+            continue;
+        }
+        else
+            std::cout << dates[i] << " => " << std::fixed << std::setprecision(2) << value * it->second << std::endl;
     }
 }
