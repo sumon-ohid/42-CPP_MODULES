@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 10:06:11 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/14 17:03:07 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/14 17:35:12 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ std::string *get_values(std::string *data, int size, int flag)
                 j++;
             if (j == data[i + 1].size() || data[i + 1][j] != '|')
             {
-                values[i] = "Error: bad input => ";
+                values[i] = "Error: bad input => " + data[i + 1].substr(0, 10);
                 continue;
             }
             values[i] = data[i + 1].substr(j + 1);
@@ -168,7 +168,7 @@ void search_data(std::string *dates, std::string *values, const std::multimap<st
                 --it;
             }
         }
-        if (values[i] == "Error: bad input => " | values[i] == "Error: not a positive number." || values[i] == "Error: too large a number.")
+        if (values[i] == "Error: bad input => " + dates[i].substr(0, 10) || values[i] == "Error: not a positive number." || values[i] == "Error: too large a number.")
         {
             std::cerr << values[i] << std::endl;
             continue;
