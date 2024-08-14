@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 10:06:08 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/13 18:09:02 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/14 11:24:41 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,22 @@
 
 #include <iostream>
 #include <string>
-#include <map>
 #include <algorithm>
 #include <sstream>
 #include <fstream>
 #include <climits>
+#include <map>
+#include <iterator>
+#include <vector>
+#include <iomanip>
+#include <utility>
 
-class BitcoinExchange
-{
-    private:
-        std::map<std::string, float> _bitcoin;
 
-    public:
-        BitcoinExchange();
-        BitcoinExchange(std::map<std::string, float> bitcoin);
-        ~BitcoinExchange();
-        BitcoinExchange(const BitcoinExchange &copy);
-        BitcoinExchange &operator=(const BitcoinExchange &copy);
-
-        bool date_validation(std::string date);
-        bool value_validation(std::string value);
-};
+bool file_is_valid(std::string filename, std::string &content);
+void remove_spaces(std::string &str);
+bool headline_checker(std::string headline);
+std::string* data_extractor(const std::string& str, int &line_count);
+std::string* get_values(std::string* input, int line_count, int start);
+std::string* get_dates(std::string* input, int line_count, int start);
+void make_multimap(std::string* dates, std::string* values, int line_count, std::multimap<std::string, float> &bitcoin);
+void search_data(std::string* dates, std::string* values, int line_count, std::multimap<std::string, float> &bitcoin);

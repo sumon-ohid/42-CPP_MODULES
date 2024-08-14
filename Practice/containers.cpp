@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 09:34:57 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/12 10:45:36 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/14 10:38:46 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <utility>
 #include <vector>
 #include <deque>
-#include <map>
+#include <multimap>
 
 void vector_test()
 {
@@ -60,27 +60,27 @@ void deque_test()
     }
 }
 
-void map_test()
+void multimap_test()
 {
     std::cout << std::endl;
-    std::cout << "*** MAP ***" << std::endl;
-    std::map <int , int> _map;
-    _map.insert(std::pair<int, int> (0, 42));
-    _map.insert(std::pair<int, int> (4, 122));
-    _map.insert(std::pair<int, int> (3, 142));
-    _map.insert(std::pair<int, int> (5, 542));
-    _map.insert(std::pair<int, int> (1, 1112));
-    _map.insert(std::pair<int, int> (6, 432));
-    _map.insert(std::pair<int, int> (2, 4200));
+    std::cout << "*** multimap ***" << std::endl;
+    std::multimap <int , int> _multimap;
+    _multimap.insert(std::pair<int, int> (0, 42));
+    _multimap.insert(std::pair<int, int> (4, 122));
+    _multimap.insert(std::pair<int, int> (3, 142));
+    _multimap.insert(std::pair<int, int> (5, 542));
+    _multimap.insert(std::pair<int, int> (1, 1112));
+    _multimap.insert(std::pair<int, int> (6, 432));
+    _multimap.insert(std::pair<int, int> (2, 4200));
 
-    std::map<int , int> ::iterator itr;
+    std::multimap<int , int> ::iterator itr;
     
-    _map.erase(2);
+    _multimap.erase(2);
 
     // erase from begining till 4th.
-    _map.erase(_map.begin(), _map.find(4));
+    _multimap.erase(_multimap.begin(), _multimap.find(4));
     std::cout << "KEY\tELEMENT\n";
-    for (itr = _map.begin(); itr != _map.end(); ++itr)
+    for (itr = _multimap.begin(); itr != _multimap.end(); ++itr)
         std::cout << itr->first << "\t" << itr->second << std::endl;
     std::cout << std::endl;
 }
@@ -89,6 +89,6 @@ int main(void)
 {
     vector_test();
     deque_test();
-    map_test();
+    multimap_test();
     return (0);
 }
