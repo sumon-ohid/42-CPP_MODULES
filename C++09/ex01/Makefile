@@ -6,15 +6,15 @@
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/13 09:50:29 by msumon            #+#    #+#              #
-#    Updated: 2024/08/13 09:50:33 by msumon           ###   ########.fr        #
+#    Updated: 2024/08/15 12:03:44 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= 
+NAME		= RPN
 CXX			= c++
 CXXFLAGS	= -Wall -Werror -Wextra -std=c++98
-HEADERS		= 
-SRCS		= main.cpp
+HEADERS		= RPN.hpp
+SRCS		= main.cpp RPN.cpp
 OBJS		= $(SRCS:.cpp=.o)
 RM			= rm -rf
 
