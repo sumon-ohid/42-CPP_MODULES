@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:08:41 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/15 12:16:40 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/15 16:39:51 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ int evaluateRPN(const std::string &expression)
         if (isdigit(token[0]) || (token.size() > 1 && token[0] == '-'))
         {
             if (find(token.begin(), token.end(), '.') != token.end())
+                throw std::runtime_error("Error");
+            int num = std::atoi(token.c_str());
+            if (num < 0 || num > 10)
                 throw std::runtime_error("Error");
             stack.push(std::atoi(token.c_str()));
         }
