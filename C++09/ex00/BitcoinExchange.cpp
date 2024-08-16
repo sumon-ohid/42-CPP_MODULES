@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 10:06:11 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/15 09:45:24 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/16 13:20:53 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ bool file_is_valid(std::string filename, std::string &content)
         std::stringstream buffer;
         buffer << btcfile.rdbuf();
         content = buffer.str();
+        if (content.empty())
+        {
+            std::cerr << "Error: file is empty." << std::endl;
+            return (false);
+        }
     }
     btcfile.close();
     return (true);
@@ -53,7 +58,7 @@ std::string* data_extractor(const std::string& str, int &line_count)
             line_count++;
         i++;
     }
-    
+    line_count++;
     std::stringstream ss(str);
     std::string line;
     std::string* ret = new std::string[line_count];
@@ -72,6 +77,8 @@ bool is_valid_date(const std::string &date)
     if (date.length() != 10)
         return false;
     if (date[4] != '-' || date[7] != '-')
+        return false;
+    if (find(date.begin(), date.begin() + 10, ' ') != date.begin() + 10)
         return false;
     int year = atoi(date.substr(0, 4).c_str());
     int month = atoi(date.substr(5, 2).c_str());

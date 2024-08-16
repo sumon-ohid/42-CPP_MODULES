@@ -6,13 +6,13 @@
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/13 09:50:29 by msumon            #+#    #+#              #
-#    Updated: 2024/08/14 16:02:49 by msumon           ###   ########.fr        #
+#    Updated: 2024/08/16 13:19:54 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= btc
 CXX			= c++
-CXXFLAGS	= -Wall -Werror -Wextra -std=c++98
+CXXFLAGS	= -Wall -Werror -Wextra -std=c++98 -g
 HEADERS		= BitcoinExchange.hpp
 SRCS		= main.cpp BitcoinExchange.cpp
 OBJS		= $(SRCS:.cpp=.o)

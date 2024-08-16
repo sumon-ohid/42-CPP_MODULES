@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:08:41 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/15 16:39:51 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/16 12:23:28 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stack>
 #include <string>
 #include <stdexcept>
+#include <algorithm>
 
 // Initialize a stack to store operands.
 // Split the input string by spaces to get individual tokens.
