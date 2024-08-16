@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 07:27:43 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/16 12:45:11 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/16 13:27:37 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@ int main(int argc, char const **argv)
     try
     {
         if (argc < 2)
-            throw std::invalid_argument("Not enough arguments");
-        std::vector<int> arr;
+            throw std::invalid_argument("");
+        std::vector<int> _array;
         for (int i = 1; i < argc; ++i)
         {
             int num = std::atoi(argv[i]);
             if (num <= 0)
-                throw std::invalid_argument("Invalid number");
-            arr.push_back(num);
+                throw std::invalid_argument("");
+            _array.push_back(num);
         }
-        if (arr.size() > 3000)
-            throw std::invalid_argument("Too many elements");
+        if (_array.size() > 30000)
+            throw std::invalid_argument("");
         
         std::cout << "Before: ";
         int i = 0;
-        for (std::vector<int>::iterator it = arr.begin(); it != arr.end(); ++it)
+        for (std::vector<int>::iterator it = _array.begin(); it != _array.end(); ++it)
         {
             std::cout << *it << " ";
             i++;
@@ -44,13 +44,13 @@ int main(int argc, char const **argv)
         std::cout << std::endl;
 
         std::clock_t start = std::clock();
-        fordJohnsonSort(arr);
+        fordJohnsonSort(_array);
         std::clock_t end = std::clock();
         double duration = double(end - start) / CLOCKS_PER_SEC;
 
         std::cout << "After: ";
         i = 0;
-        for (std::vector<int>::iterator it = arr.begin(); it != arr.end(); ++it) 
+        for (std::vector<int>::iterator it = _array.begin(); it != _array.end(); ++it) 
         {
             std::cout << *it << " ";
             i++;
@@ -65,10 +65,10 @@ int main(int argc, char const **argv)
         std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector: " << duration * 1e3 << " ms" << std::endl;
 
         // Using a different container (list) for validation
-        std::list<int> listArr(arr.begin(), arr.end());
+        std::list<int> list(_array.begin(), _array.end());
         
         start = std::clock();
-        fordJohnsonSort(listArr);
+        fordJohnsonSort(list);
         end = std::clock();
         duration = double(end - start) / CLOCKS_PER_SEC;
         

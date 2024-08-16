@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:08:41 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/16 12:23:28 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/16 14:25:16 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 // If the token is an operator (+, -, *, /), pop the required number of operands from the stack, perform the operation, and push the result back onto the stack.
 // The final result should be the only element left in the stack.
 
-int evaluateRPN(const std::string &expression)
+float evaluateRPN(const std::string &expression)
 {
-    std::stack<int> stack;
+    std::stack<float> stack;
     std::istringstream tokens(expression);
     std::string token;
 
@@ -39,15 +39,17 @@ int evaluateRPN(const std::string &expression)
             int num = std::atoi(token.c_str());
             if (num < 0 || num > 10)
                 throw std::runtime_error("Error");
-            stack.push(std::atoi(token.c_str()));
+            stack.push(std::atof(token.c_str()));
         }
         else 
         {
             if (stack.size() < 2)
                 throw std::runtime_error("Error");
-            int b = stack.top();
+            float b = stack.top();
             stack.pop();
-            int a = stack.top();
+            float a = stack.top();
+            if (a > 2147483647.00 || b > 2147483647.00)
+                throw std::runtime_error("Error: Overflow");
             stack.pop();
 
             if (token == "+")
@@ -80,7 +82,9 @@ int main(int argc, char *argv[])
     }
     try
     {
-        int result = evaluateRPN(argv[1]);
+        float result = evaluateRPN(argv[1]);
+        if (result > 2147483647.00)
+            throw std::runtime_error("Error: Overflow");
         std::cout << result << std::endl;
     }
     catch (const std::exception &e)

@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 10:06:11 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/16 13:20:53 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/16 14:18:51 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ std::string *get_values(std::string *data, int size, int flag)
                 continue;
             }
             values[i] = data[i + 1].substr(j + 1);
-            float f = atof(values[i].c_str());
+            double f = atof(values[i].c_str());
             if (f < 0)
             {
                 values[i] = "Error: not a positive number.";
