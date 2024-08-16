@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 10:06:11 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/16 14:18:51 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/16 18:11:16 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ std::string* data_extractor(const std::string& str, int &line_count)
     line_count++;
     std::stringstream ss(str);
     std::string line;
-    std::string* ret = new std::string[line_count];
+    std::string* ret = new std::string[str.size() + 1];
     i = 0;
     while (std::getline(ss, line))
     {
@@ -93,12 +93,17 @@ bool is_valid_date(const std::string &date)
 
 std::string *get_dates(std::string *data, int size, int flag)
 {
-    (void)flag;
+    (void) flag;
     std::string *dates = new std::string[size];
     for (int i = 0; i < size; i++)
     {
         if (i == size - 1)
             break;
+        // if (flag == 1 && data[i][0] == '\0')
+        // {
+        //     std::cerr << "Error" << std::endl;
+        //     exit(-1);
+        // }
         dates[i] = data[i + 1].substr(0, 10);
     }
     return dates;
@@ -154,10 +159,7 @@ void make_multimap(std::string *dates, std::string *values, int size, std::multi
 
 void search_data(std::string *dates, std::string *values, const std::multimap<std::string, float> &bitcoin)
 {
-    int size = 0;
-    while (dates[size] != "")
-        size++;
-    for (int i = 0; i < size; i++)
+    for (unsigned int i = 0; i < dates->size(); i++)
     {
         float value = std::atof(values[i].c_str());
         std::multimap<std::string, float>::const_iterator it = bitcoin.lower_bound(dates[i]);
