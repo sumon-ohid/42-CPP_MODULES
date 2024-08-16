@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:08:41 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/16 14:25:16 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/16 15:14:49 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ float evaluateRPN(const std::string &expression)
             float b = stack.top();
             stack.pop();
             float a = stack.top();
-            if (a > 2147483647.00 || b > 2147483647.00)
-                throw std::runtime_error("Error: Overflow");
             stack.pop();
 
             if (token == "+")
