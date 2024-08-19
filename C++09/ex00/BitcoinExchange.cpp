@@ -6,11 +6,12 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 10:06:11 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/16 18:11:16 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/19 18:09:05 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+#include <cctype>
 #include <string>
 
 bool file_is_valid(std::string filename, std::string &content)
@@ -37,9 +38,30 @@ bool file_is_valid(std::string filename, std::string &content)
     return (true);
 }
 
-void remove_spaces(std::string &str)
+bool is_valid_number(std::string &str)
 {
+    if (find(str.begin() + 1, str.end(), ' ') != str.end())
+        return false;
     str.erase(std::remove(str.begin(), str.end(), ' '), str.end());
+    bool hasDecimalPoint = false;
+    bool hasDigits = false;
+    size_t start = 0;
+
+    if (str[0] == '+' || str[0] == '-')
+        start = 1;
+    for (size_t i = start; i < str.size(); i++)
+    {
+        if (std::isdigit(str[i]))
+            hasDigits = true;
+        else if (str[i] == '.')
+        {
+            hasDecimalPoint = true;
+        }
+        else
+            // Invalid character
+            return false;
+    }
+    return hasDigits || hasDecimalPoint;
 }
 
 bool headline_checker(std::string headline)
@@ -126,6 +148,11 @@ std::string *get_values(std::string *data, int size, int flag)
                 continue;
             }
             values[i] = data[i + 1].substr(j + 1);
+            if (!is_valid_number(values[i]))
+            {
+                values[i] = "Error: Invalid input.";
+                continue;
+            }
             double f = atof(values[i].c_str());
             if (f < 0)
             {
@@ -170,7 +197,7 @@ void search_data(std::string *dates, std::string *values, const std::multimap<st
                 --it;
             }
         }
-        if (values[i] == "Error: not a positive number." || values[i] == "Error: too large a number.")
+        if (values[i] == "Error: not a positive number." || values[i] == "Error: too large a number." || values[i] == "Error: Invalid input.")
         {
             std::cerr << values[i] << std::endl;
             continue;
@@ -181,6 +208,6 @@ void search_data(std::string *dates, std::string *values, const std::multimap<st
             continue;
         }
         else
-            std::cout << dates[i] << " => " << std::fixed << std::setprecision(2) << value * it->second << std::endl;
+            std::cout << dates[i] << " => " << values[i] << " = " << std::fixed << std::setprecision(2) << value * it->second << std::endl;
     }
 }

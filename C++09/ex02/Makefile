@@ -6,7 +6,7 @@
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/13 09:50:29 by msumon            #+#    #+#              #
-#    Updated: 2024/08/15 13:08:20 by msumon           ###   ########.fr        #
+#    Updated: 2024/08/19 10:50:16 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,12 @@ RM			= rm -rf
 
 all:	$(NAME)
 
+%.o: %.cpp $(HEADERS)
+		$(CXX) $(CXXFLAGS) -c $< -o $@
+
 $(NAME): $(OBJS)
 		$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.cpp $(HEADERS)
-		$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 		$(RM) $(OBJS)
