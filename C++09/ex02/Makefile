@@ -6,7 +6,7 @@
 #    By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/13 09:50:29 by msumon            #+#    #+#              #
-#    Updated: 2024/08/19 10:50:16 by msumon           ###   ########.fr        #
+#    Updated: 2024/08/19 18:13:29 by msumon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ all:	$(NAME)
 
 $(NAME): $(OBJS)
 		$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
-
 
 clean:
 		$(RM) $(OBJS)

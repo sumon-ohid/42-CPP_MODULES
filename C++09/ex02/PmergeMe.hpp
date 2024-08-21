@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 10:05:09 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/19 17:59:39 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/21 19:12:41 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,63 +22,118 @@
 #include <cstring>
 #include <string>
 
-extern int comparison_count;
+static int comparision_count = 0;
 
 template <typename Container>
-void split_array_into_pair(const Container &array, Container &larger, Container &smaller)
+void split_array(const std::pair<Container, Container> &pair, Container &larger, Container &smaller)
 {
-    typename Container::const_iterator it = array.begin();
-    while (it != array.end())
+    typename Container::const_iterator it1 = pair.first.begin();
+    typename Container::const_iterator it2 = pair.second.begin();
+
+    while (it1 != pair.first.end() && it2 != pair.second.end())
     {
-        typename Container::const_iterator next_it = it;
-        ++next_it;
-        if (next_it != array.end())
+        comparision_count++;
+        if (*it1 > *it2)
         {
-            comparison_count++;
-            if (*it > *next_it)
-            {
-                larger.push_back(*it);
-                smaller.push_back(*next_it);
-            }
-            else
-            {
-                larger.push_back(*next_it);
-                smaller.push_back(*it);
-            }
-            ++it;
+            larger.push_back(*it1);
+            smaller.push_back(*it2);
         }
         else
         {
-            larger.push_back(*it);
+            larger.push_back(*it2);
+            smaller.push_back(*it1);
         }
-        ++it;
+        ++it1;
+        ++it2;
+    }
+
+    while (it1 != pair.first.end())
+    {
+        smaller.push_back(*it1);
+        ++it1;
+    }
+
+    while (it2 != pair.second.end())
+    {
+        smaller.push_back(*it2);
+        ++it2;
     }
 }
 
-template <typename Container>
-void insert_with_binary_search(Container &sorted, typename Container::value_type value)
-{
-    typename Container::iterator left = sorted.begin();
-    typename Container::iterator right = sorted.end();
 
-    while (left != right)
+template <typename Container>
+std::vector<int> generate_jacobsthal_numbers(Container limit)
+{
+    std::vector<int> jacobsthal_numbers;
+    jacobsthal_numbers.push_back(0);
+    jacobsthal_numbers.push_back(1);
+
+    int n = 2;
+    while (true)
     {
-        typename Container::iterator mid = left;
-        std::advance(mid, std::distance(left, right) / 2);
-        comparison_count++;
+        int j_num = jacobsthal_numbers[n - 1] + 2 * jacobsthal_numbers[n - 2];
+        if (j_num >= limit)
+            break;
+        jacobsthal_numbers.push_back(j_num);
+        ++n;
+    }
+    return jacobsthal_numbers;
+}
+
+template <typename Container>
+void insert_with_jacobsthal_binary_search(Container &sorted, Container &smaller, const std::pair<Container, Container> &pair)
+{
+    if (smaller.empty()) return;
+
+    typename Container::value_type value = smaller.front();
+    typename Container::const_iterator it1 = pair.first.begin();
+    typename Container::const_iterator it2 = pair.second.begin();
+    typename Container::value_type limit;
+
+    while (it1 != pair.first.end() && it2 != pair.second.end())
+    {
+        if (value == *it1)
+        {
+            limit = *it1;
+            break;
+        }
+        else if (value == *it2)
+        {
+            limit = *it2;
+            break;
+        }
+        ++it1;
+        ++it2;
+    }
+
+    typename Container::iterator limit_it = std::find(sorted.begin(), sorted.end(), limit);
+
+    std::vector<int> jacobsthal_numbers = generate_jacobsthal_numbers(std::distance(sorted.begin(), limit_it));
+
+    typename Container::iterator it = sorted.begin();
+    int low = 0;
+    int high = jacobsthal_numbers.size() - 1;
+
+    while (low <= high)
+    {
+        int mid_index = (low + high) / 2;
+        typename Container::iterator mid = sorted.begin();
+        std::advance(mid, jacobsthal_numbers[mid_index]);
+        comparision_count++;
         if (*mid < value)
         {
-            left = mid;
-            ++left;
+            it = mid;
+            ++it;
+            low = mid_index + 1;
         }
         else
-        {
-            right = mid;
-        }
+            high = mid_index - 1;
     }
 
-    sorted.insert(left, value);
+    sorted.insert(it, value);
+    smaller.erase(smaller.begin());
 }
+
 
 template <typename Container>
 void merge(Container &left, Container &right, Container &result)
@@ -88,7 +143,7 @@ void merge(Container &left, Container &right, Container &result)
 
     while (it_left != left.end() && it_right != right.end())
     {
-        comparison_count++;
+        comparision_count++;
         if (*it_left <= *it_right)
         {
             result.push_back(*it_left);
@@ -135,26 +190,81 @@ void merge_sort(Container &container)
 }
 
 template <typename Container>
+void insert_the_smallest(Container &sorted, Container &smaller, Container &larger, const std::pair<Container, Container> &pair)
+{
+    if (larger.empty())
+        return;
+
+    typename Container::value_type front = larger.front();
+    typename Container::const_iterator it1 = pair.first.begin();
+    typename Container::const_iterator it2 = pair.second.begin();
+
+    while (it1 != pair.first.end() && it2 != pair.second.end())
+    {
+        if (front == *it1)
+        {
+            sorted.insert(sorted.begin(), *it2);
+            smaller.erase(std::remove(smaller.begin(), smaller.end(), *it2), smaller.end());
+            break;
+        }
+        else if (front == *it2)
+        {
+            sorted.insert(sorted.begin(), *it1);
+            smaller.erase(std::remove(smaller.begin(), smaller.end(), *it1), smaller.end());
+            break;
+        }
+        ++it1;
+        ++it2;
+    }
+}
+
+template <typename Container>
 void fordJohnsonSort(Container &array)
 {
     if (array.size() <= 1)
         return;
 
+    std::pair<Container, Container> pair;
+    for (typename Container::iterator it = array.begin(); it != array.end(); ++it)
+    {
+        typename Container::iterator next_it = it;
+        ++next_it;
+        if (next_it != array.end())
+        {
+            if (*it > *next_it)
+            {
+                pair.first.push_back(*it);
+                pair.second.push_back(*next_it);
+            }
+            else
+            {
+                pair.first.push_back(*next_it);
+                pair.second.push_back(*it);
+            }
+            it = next_it;
+        }
+        else
+        {
+            pair.second.push_back(*it);
+        }
+    }
+    
     Container larger, smaller;
-    split_array_into_pair(array, larger, smaller);
+    split_array(pair, larger, smaller);
 
     merge_sort(larger);
 
     Container sorted;
-    sorted.push_back(smaller.front());
-    sorted.insert(sorted.end(), larger.begin(), larger.end());
+    sorted = larger;
+    
+    insert_the_smallest(sorted, smaller, larger, pair);
 
-    typename Container::iterator it = smaller.begin();
-    ++it;
-    for (; it != smaller.end(); ++it)
+    while (!smaller.empty())
     {
-        insert_with_binary_search(sorted, *it);
+        insert_with_jacobsthal_binary_search(sorted, smaller, pair);
     }
 
     array = sorted;
+    //std::cout << "Comparision count: " << comparision_count << std::endl;
+    comparision_count = 0;
 }

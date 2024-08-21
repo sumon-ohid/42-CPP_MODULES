@@ -6,13 +6,11 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 10:06:11 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/19 18:09:05 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/21 10:52:05 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
-#include <cctype>
-#include <string>
 
 bool file_is_valid(std::string filename, std::string &content)
 {

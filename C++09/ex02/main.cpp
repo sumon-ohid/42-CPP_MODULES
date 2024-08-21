@@ -6,13 +6,21 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 07:27:43 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/19 17:54:56 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/21 19:18:57 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-int comparison_count = 0;
+bool hasRepetition(const std::vector<int> &array)
+{
+    for (int i = 0; i < (int)array.size(); ++i)
+    {
+        if (std::count(array.begin(), array.end(), array[i]) > 1)
+            return true;
+    }
+    return false;
+}
 
 int main(int argc, char const **argv)
 {
@@ -35,39 +43,39 @@ int main(int argc, char const **argv)
         }
         if (_array.size() > 30000)
             throw std::invalid_argument("");
+        if (hasRepetition(_array))
+            throw std::invalid_argument("");
         
-        std::cout << "Before: ";
+        std::cout << "Before : ";
         int i = 0;
         for (std::vector<int>::iterator it = _array.begin(); it != _array.end(); ++it)
             std::cout << *it << " ";
-        
         std::cout << std::endl;
+        
+        //Using a different container (list) for validation
+        std::list<int> list(_array.begin(), _array.end());
 
+        //Using std::vector for sorting    
         std::clock_t start = std::clock();
         fordJohnsonSort(_array);
         std::clock_t end = std::clock();
         double duration = double(end - start) / CLOCKS_PER_SEC;
-
-        std::cout << "After: ";
+        std::cout << "After  : ";
         i = 0;
         for (std::vector<int>::iterator it = _array.begin(); it != _array.end(); ++it) 
             std::cout << *it << " ";
-            
         std::cout << std::endl;
-
-        std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector: " << duration * 1e3 << " ms" << std::endl;
-
-        //Using a different container (list) for validation
-        std::list<int> list(_array.begin(), _array.end());
         
+        std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector: " << duration * 1e3 << " ms" << std::endl;
+        
+        //Using std::list for sorting
         start = std::clock();
         fordJohnsonSort(list);
         end = std::clock();
         duration = double(end - start) / CLOCKS_PER_SEC;
         
         std::cout << "Time to process a range of " << argc - 1 << " elements with std::list: " << duration * 1e3 << " ms" << std::endl;
-
-        std::cout << "Number of comparisons: " << comparison_count << std::endl;
+        
     }
     catch (const std::exception& e)
     {
