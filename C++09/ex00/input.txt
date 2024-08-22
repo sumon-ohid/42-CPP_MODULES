@@ -4,8 +4,15 @@ date | value
 2011-01-03 | 1
 2011-01-03 | 1.2
 2001-01-09 | 1
-2001-42-42
+2001-42-42 
+2016-09-05 |
 2012-01-11 | 1
 2012-01-11 | 2147483648
 2022-03-29 | 1.001
 2012-01-11 | -1
+
+
+// 2 problems found
+
+--> if there is only a pipe after date it segfaults.
+--> for some errors it crops line from bottom.

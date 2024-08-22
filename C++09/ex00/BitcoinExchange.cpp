@@ -6,11 +6,19 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 10:06:11 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/21 10:52:05 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/22 07:58:22 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+
+void remove_spaces(std::string *data, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        data[i].erase(std::remove(data[i].begin(), data[i].end(), ' '), data[i].end());
+    }
+}
 
 bool file_is_valid(std::string filename, std::string &content)
 {
@@ -56,7 +64,6 @@ bool is_valid_number(std::string &str)
             hasDecimalPoint = true;
         }
         else
-            // Invalid character
             return false;
     }
     return hasDigits || hasDecimalPoint;
@@ -113,17 +120,13 @@ bool is_valid_date(const std::string &date)
 
 std::string *get_dates(std::string *data, int size, int flag)
 {
-    (void) flag;
     std::string *dates = new std::string[size];
     for (int i = 0; i < size; i++)
     {
         if (i == size - 1)
             break;
-        // if (flag == 1 && data[i][0] == '\0')
-        // {
-        //     std::cerr << "Error" << std::endl;
-        //     exit(-1);
-        // }
+        if (flag == 0 && !is_valid_date(data[i + 1].substr(0, 10)))
+            i++;
         dates[i] = data[i + 1].substr(0, 10);
     }
     return dates;
@@ -132,6 +135,7 @@ std::string *get_dates(std::string *data, int size, int flag)
 std::string *get_values(std::string *data, int size, int flag)
 {
     std::string *values = new std::string[size];
+    remove_spaces(data, size);
     for (int i = 0; i < size; ++i)
     {
         unsigned int j = 0;
@@ -143,12 +147,18 @@ std::string *get_values(std::string *data, int size, int flag)
                 j++;
             if (j == data[i + 1].size() || data[i + 1][j] != '|')
             {
+                values[i] = "Error: bad input";
+                continue;
+            }
+            if (j + 1 >= data[i + 1].size()) // Check if there is only a pipe after the date
+            {
+                values[i] = "Error: bad input";
                 continue;
             }
             values[i] = data[i + 1].substr(j + 1);
             if (!is_valid_number(values[i]))
             {
-                values[i] = "Error: Invalid input.";
+                values[i] = "Error: bad input";
                 continue;
             }
             double f = atof(values[i].c_str());
@@ -195,7 +205,7 @@ void search_data(std::string *dates, std::string *values, const std::multimap<st
                 --it;
             }
         }
-        if (values[i] == "Error: not a positive number." || values[i] == "Error: too large a number." || values[i] == "Error: Invalid input.")
+        if (values[i] == "Error: not a positive number." || values[i] == "Error: too large a number.")
         {
             std::cerr << values[i] << std::endl;
             continue;
@@ -203,6 +213,11 @@ void search_data(std::string *dates, std::string *values, const std::multimap<st
         if (!is_valid_date(dates[i]))
         {
             std::cerr << "Error: bad input => " + dates[i] << std::endl;
+            continue;
+        }
+        else if (values[i] == "Error: bad input")
+        {
+            std::cerr << values[i] << " => " << dates[i] << std::endl;
             continue;
         }
         else
