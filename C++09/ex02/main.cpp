@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 07:27:43 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/21 19:18:57 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/22 19:29:23 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int main(int argc, char const **argv)
             throw std::invalid_argument("");
         
         std::cout << "Before : ";
-        int i = 0;
         for (std::vector<int>::iterator it = _array.begin(); it != _array.end(); ++it)
             std::cout << *it << " ";
         std::cout << std::endl;
@@ -61,7 +60,6 @@ int main(int argc, char const **argv)
         std::clock_t end = std::clock();
         double duration = double(end - start) / CLOCKS_PER_SEC;
         std::cout << "After  : ";
-        i = 0;
         for (std::vector<int>::iterator it = _array.begin(); it != _array.end(); ++it) 
             std::cout << *it << " ";
         std::cout << std::endl;
@@ -79,7 +77,7 @@ int main(int argc, char const **argv)
     }
     catch (const std::exception& e)
     {
-        std::cerr << "Error" << e.what() << std::endl;
+        std::cerr << "Error " << e.what() << std::endl;
         return 1;
     }
 
