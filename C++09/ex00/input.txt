@@ -10,9 +10,3 @@ date | value
 2012-01-11 | 2147483648
 2022-03-29 | 1.001
 2012-01-11 | -1
-
-
-// 2 problems found
-
---> if there is only a pipe after date it segfaults.
---> for some errors it crops line from bottom.

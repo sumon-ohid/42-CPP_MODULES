@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 10:11:54 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/21 20:40:51 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/22 08:51:20 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,12 @@ int main(int ac, char **av)
             }
             std::string *input_values = get_values(input, line_count, 1);
             std::string *input_dates = get_dates(input, line_count, 1);
+            unsigned int size = line_count;
             std::string *data = data_extractor(data_content, line_count);
             std::string *data_values = get_values(data, line_count, 0);
             std::string *data_dates = get_dates(data, line_count, 0);
             make_multimap(data_dates, data_values, line_count, bitcoin);
-            search_data(input_dates, input_values, bitcoin);
+            search_data(input_dates, input_values, bitcoin, size);
             ft_delete(input, input_values, input_dates, data, data_values, data_dates);
         }
     }

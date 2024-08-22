@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 10:06:11 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/22 07:58:22 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/22 08:55:08 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,9 +192,9 @@ void make_multimap(std::string *dates, std::string *values, int size, std::multi
     }
 }
 
-void search_data(std::string *dates, std::string *values, const std::multimap<std::string, float> &bitcoin)
+void search_data(std::string *dates, std::string *values, const std::multimap<std::string, float> &bitcoin, unsigned int size)
 {
-    for (unsigned int i = 0; i < dates->size(); i++)
+    for (unsigned int i = 0; i < size - 2; i++)
     {
         float value = std::atof(values[i].c_str());
         std::multimap<std::string, float>::const_iterator it = bitcoin.lower_bound(dates[i]);
