@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 07:27:43 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/22 19:29:23 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/23 19:17:00 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int main(int argc, char const **argv)
         
         //Using std::list for sorting
         start = std::clock();
-        fordJohnsonSort(list);
+        //fordJohnsonSort(list);
         end = std::clock();
         duration = double(end - start) / CLOCKS_PER_SEC;
         

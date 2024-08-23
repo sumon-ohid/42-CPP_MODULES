@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 10:05:09 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/22 20:11:53 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/23 19:50:00 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,24 +60,36 @@ void split_array(const std::pair<Container, Container> &pair, Container &larger,
     }
 }
 
-// template <typename Container>
-// std::vector<int> generate_jacobsthal_numbers(Container limit)
-// {
-//     std::vector<int> jacobsthal_numbers;
-//     jacobsthal_numbers.push_back(0);
-//     jacobsthal_numbers.push_back(1);
+template <typename Container>
+std::vector<int> generate_jacobsthal_numbers(Container limit)
+{
+    std::vector<int> jacobsthal_numbers;
+    jacobsthal_numbers.push_back(1);
+    jacobsthal_numbers.push_back(3);
 
-//     int n = 2;
-//     while (true)
-//     {
-//         int j_num = jacobsthal_numbers[n - 1] + 2 * jacobsthal_numbers[n - 2];
-//         if (j_num >= limit)
-//             break;
-//         jacobsthal_numbers.push_back(j_num);
-//         ++n;
-//     }
-//     return jacobsthal_numbers;
-// }
+    int n = 2;
+    while (true)
+    {
+        int j_num = jacobsthal_numbers[n - 1] + 2 * jacobsthal_numbers[n - 2];
+        if (j_num >= limit)
+            break;
+        jacobsthal_numbers.push_back(j_num);
+        ++n;
+    }
+    
+    // std::vector<int> filled_numbers;
+    // if (jacobsthal_numbers.size() < 1)
+    //     filled_numbers.push_back(1);
+    // for (unsigned int i = 2; i < jacobsthal_numbers.size(); ++i)
+    // {
+    //     int temp = jacobsthal_numbers[i];
+    //     while (temp > jacobsthal_numbers[i - 1] && temp < limit)
+    //     {
+    //         filled_numbers.push_back(temp--);
+    //     }
+    // }
+    return jacobsthal_numbers;
+}
 
 template <typename ForwardIterator, typename T>
 ForwardIterator custom_lower_bound(ForwardIterator first, ForwardIterator last, const T& value)
@@ -130,31 +142,22 @@ void insert_with_jacobsthal_binary_search(Container &sorted, Container &smaller,
         ++it2;
     }
 
-    //typename Container::iterator limit_it = std::find(sorted.begin(), sorted.end(), limit);
+    typename Container::iterator limit_it = std::find(sorted.begin(), sorted.end(), limit);
 
-    //std::vector<int> jacobsthal_numbers = generate_jacobsthal_numbers(distance(sorted.begin(), limit_it));
+    std::vector<int> jacobsthal_numbers = generate_jacobsthal_numbers(std::distance(sorted.begin(), limit_it));
 
-    // typename Container::iterator it = sorted.begin();
-    // int low = 0;
-    // int high = jacobsthal_numbers.size() - 1;
+    typename Container::iterator pos = limit_it;
+    for (int i = 0; i < (int) jacobsthal_numbers.size(); ++i)
+    {
+        int index = jacobsthal_numbers[i];
+        if (index >= std::distance(sorted.begin(), limit_it) || sorted[index] > value)
+        {
+            pos = sorted.begin() + index;
+            break;
+        }
+    }
 
-    // while (low <= high)
-    // {
-    //     int mid_index = (low + high) / 2;
-    //     typename Container::iterator mid = sorted.begin();
-    //     std::advance(mid, jacobsthal_numbers[mid_index]);
-    //     comparision_count++;
-    //     if (*mid < value)
-    //     {
-    //         it = mid;
-    //         ++it;
-    //         low = mid_index + 1;
-    //     }
-    //     else
-    //         high = mid_index - 1;
-    // }
-
-    typename Container::iterator it = custom_lower_bound(sorted.begin(), sorted.end(), value);
+    typename Container::iterator it = custom_lower_bound(sorted.begin(), pos, value);
     
     sorted.insert(it, value);
     smaller.erase(smaller.begin());
@@ -244,13 +247,17 @@ void insert_the_smallest(Container &sorted, Container &smaller, Container &large
 }
 
 template <typename Container>
-bool is_sorted(const Container& array)
+bool is_sorted(const Container& array, unsigned int size)
 {
     if (array.empty())
         return false;
-    for (typename Container::const_iterator it = array.begin(); std::next(it) != array.end(); ++it)
+    if (array.size() != size)
+        return false;
+    for (typename Container::const_iterator it = array.begin(); it != array.end(); ++it)
     {
-        if (*it > *std::next(it))
+        typename Container::const_iterator next_it = it;
+        ++next_it;
+        if (next_it != array.end() && *it > *next_it)
             return false;
     }
     return true;
@@ -261,7 +268,8 @@ void fordJohnsonSort(Container &array)
 {
     if (array.size() <= 1)
         return;
-
+    unsigned int size = array.size();
+    
     std::pair<Container, Container> pair;
     for (typename Container::iterator it = array.begin(); it != array.end(); ++it)
     {
@@ -269,23 +277,13 @@ void fordJohnsonSort(Container &array)
         ++next_it;
         if (next_it != array.end())
         {
-            comparision_count++;
-            if (*it > *next_it)
-            {
-                pair.first.push_back(*it);
-                pair.second.push_back(*next_it);
-            }
-            else
-            {
-                pair.first.push_back(*next_it);
-                pair.second.push_back(*it);
-            }
-            it = next_it;
+            pair.first.push_back(*it);
+            pair.second.push_back(*next_it);
+            ++it;
         }
         else
-        {
             pair.second.push_back(*it);
-        }
+        
     }
     
     Container larger, smaller;
@@ -303,10 +301,10 @@ void fordJohnsonSort(Container &array)
         insert_with_jacobsthal_binary_search(sorted, smaller, pair);
     }
 
-    if (is_sorted(sorted))
+    if (is_sorted(sorted, size))
         array = sorted;
     else  
         throw std::invalid_argument("Array is not sorted.");
-    std::cout << "Comparision count: " << comparision_count << std::endl;
+    //std::cout << "Comparision count: " << comparision_count << std::endl;
     comparision_count = 0;
 }
