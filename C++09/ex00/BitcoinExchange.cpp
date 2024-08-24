@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 10:06:11 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/22 08:55:08 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/24 08:41:48 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,11 @@ std::string *get_values(std::string *data, int size, int flag)
         {
             while (j < data[i + 1].size() && data[i + 1][j] != ',')
                 j++;
+            if (j == data[i + 1].size() || data[i + 1][j] != ',')
+            {
+                values[i] = "Error: bad input";
+                continue;
+            }
             if (j > 1)
                 values[i] = data[i + 1].substr(j + 1);
         }
@@ -221,6 +226,15 @@ void search_data(std::string *dates, std::string *values, const std::multimap<st
             continue;
         }
         else
-            std::cout << dates[i] << " => " << values[i] << " = " << std::fixed << std::setprecision(2) << value * it->second << std::endl;
+        {
+            float res = value * it->second;
+            if (res > LONG_MAX || res < 0)
+            {
+                std::cerr << "Error: bad input => " << dates[i] << std::endl;
+                continue;
+            }
+            else
+                std::cout << dates[i] << " => " << values[i] << " = " << std::fixed << std::setprecision(2) << value * it->second << std::endl;
+        }
     }
 }
