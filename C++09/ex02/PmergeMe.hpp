@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 10:05:09 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/25 10:15:15 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/25 14:09:58 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,7 +284,9 @@ void fordJohnsonSort(Container &array)
             ++it;
         }
         else
-            pair.second.push_back(*it);
+        {
+            pair.first.push_back(*it);
+        }
         
     }
     
@@ -297,6 +299,11 @@ void fordJohnsonSort(Container &array)
     sorted = larger;
     
     insert_the_smallest(sorted, smaller, larger, pair);
+    if (smaller.size() == 1 && smaller.front() > *(--sorted.end()))
+    {
+        sorted.insert(sorted.end(), smaller.front());
+        smaller.erase(smaller.begin());
+    }
 
     while (!smaller.empty())
     {
