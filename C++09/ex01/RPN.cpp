@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:08:35 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/16 15:18:29 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/25 10:09:18 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 float evaluateRPN(const std::string &expression)
 {
-    std::stack<float> stack;
+    std::list<float> stack;
     std::istringstream tokens(expression);
     std::string token;
 
@@ -29,33 +29,33 @@ float evaluateRPN(const std::string &expression)
     {
         if (isdigit(token[0]) || (token.size() > 1 && token[0] == '-'))
         {
-            if (find(token.begin(), token.end(), '.') != token.end())
+            if (std::find(token.begin(), token.end(), '.') != token.end())
                 throw std::runtime_error("Error");
             int num = std::atoi(token.c_str());
             if (num < 0 || num > 10)
                 throw std::runtime_error("Error");
-            stack.push(std::atof(token.c_str()));
+            stack.push_back(std::atof(token.c_str()));
         }
         else 
         {
             if (stack.size() < 2)
                 throw std::runtime_error("Error");
-            float b = stack.top();
-            stack.pop();
-            float a = stack.top();
-            stack.pop();
+            float b = stack.back();
+            stack.pop_back();
+            float a = stack.back();
+            stack.pop_back();
 
             if (token == "+")
-                stack.push(a + b);
+                stack.push_back(a + b);
             else if (token == "-")
-                stack.push(a - b);
+                stack.push_back(a - b);
             else if (token == "*")
-                stack.push(a * b);
+                stack.push_back(a * b);
             else if (token == "/")
             {
                 if (b == 0)
                     throw std::runtime_error("Error: Division by zero");
-                stack.push(a / b);
+                stack.push_back(a / b);
             }
             else
                 throw std::runtime_error("Error: Unknown operator: " + token);
@@ -63,5 +63,5 @@ float evaluateRPN(const std::string &expression)
     }
     if (stack.size() != 1)
         throw std::runtime_error("Error");
-    return stack.top();
+    return stack.back();
 }

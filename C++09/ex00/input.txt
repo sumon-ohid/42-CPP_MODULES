@@ -12,4 +12,3 @@ date | value
 2012-01-11 | -1
 2022-03-29 | 1
 
-// add validation for data

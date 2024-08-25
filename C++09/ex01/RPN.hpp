@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:08:33 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/16 15:18:45 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/25 10:09:34 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 #include <iostream>
 #include <sstream>
-#include <stack>
+#include <list>
 #include <string>
 #include <stdexcept>
 #include <algorithm>
+#include <cfloat>
 
 float evaluateRPN(const std::string &expression);

@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 07:27:43 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/23 19:17:00 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/25 10:15:11 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int main(int argc, char const **argv)
         std::cout << std::endl;
         
         //Using a different container (list) for validation
-        std::list<int> list(_array.begin(), _array.end());
+        std::deque<int> deque(_array.begin(), _array.end());
 
         //Using std::vector for sorting    
         std::clock_t start = std::clock();
@@ -64,15 +64,15 @@ int main(int argc, char const **argv)
             std::cout << *it << " ";
         std::cout << std::endl;
         
-        std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector: " << duration * 1e3 << " ms" << std::endl;
+        std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector: " << std::fixed << std::setprecision(6) << duration * 1e3 << " us" << std::endl;
         
-        //Using std::list for sorting
+        //Using std::deque for sorting
         start = std::clock();
-        //fordJohnsonSort(list);
+        fordJohnsonSort(deque);
         end = std::clock();
         duration = double(end - start) / CLOCKS_PER_SEC;
         
-        std::cout << "Time to process a range of " << argc - 1 << " elements with std::list: " << duration * 1e3 << " ms" << std::endl;
+        std::cout << "Time to process a range of " << argc - 1 << " elements with std::deque: " << std::fixed << std::setprecision(6) << duration * 1e3 << " us" << std::endl;
         
     }
     catch (const std::exception& e)

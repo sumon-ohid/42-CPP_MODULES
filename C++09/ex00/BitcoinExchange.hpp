@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 10:06:08 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/24 08:24:54 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/25 10:13:28 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 #include <climits>
 #include <map>
 #include <iterator>
-#include <vector>
 #include <iomanip>
 #include <utility>
+#include <cfloat>
 
 
 bool         file_is_valid(std::string filename, std::string &content);

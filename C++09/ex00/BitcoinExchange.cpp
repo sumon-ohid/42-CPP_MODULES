@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 10:06:11 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/24 08:41:48 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/25 10:12:45 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,7 +228,7 @@ void search_data(std::string *dates, std::string *values, const std::multimap<st
         else
         {
             float res = value * it->second;
-            if (res > LONG_MAX || res < 0)
+            if (res > static_cast<float>(INT_MAX) || res < 0)
             {
                 std::cerr << "Error: bad input => " << dates[i] << std::endl;
                 continue;
