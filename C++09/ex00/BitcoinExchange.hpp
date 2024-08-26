@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 10:06:08 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/25 10:13:28 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/26 07:52:59 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,4 @@ std::string* data_extractor(const std::string& str, int &line_count);
 std::string* get_values(std::string* input, int line_count, int start);
 std::string* get_dates(std::string* input, int line_count, int start);
 void         make_multimap(std::string* dates, std::string* values, int line_count, std::multimap<std::string, float> &bitcoin);
-void         search_data(std::string *dates, std::string *values, const std::multimap<std::string, float> &bitcoin, unsigned int size);
+void         search_data(std::string *dates, std::string *values, const std::multimap<std::string, float> &bitcoin, unsigned int size, std::string lowest_date);

@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 10:06:11 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/25 10:12:45 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/26 08:36:13 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@ bool headline_checker(std::string headline)
 std::string* data_extractor(const std::string& str, int &line_count)
 {
     int i = 0;
-    while (str[i] != '\0')
-    {
-        if (str[i] == '\n')
-            line_count++;
-        i++;
-    }
-    line_count++;
+    // while (str[i] != '\0')
+    // {
+    //     if (str[i] == '\n')
+    //         line_count++;
+    //     i++;
+    // }
+    // line_count++;
     std::stringstream ss(str);
     std::string line;
     std::string* ret = new std::string[str.size() + 1];
@@ -96,6 +96,7 @@ std::string* data_extractor(const std::string& str, int &line_count)
         ret[i] = line;
         i++;
     }
+    line_count = i + 1;
     return ret;
 }
 
@@ -184,6 +185,11 @@ std::string *get_values(std::string *data, int size, int flag)
             }
             if (j > 1)
                 values[i] = data[i + 1].substr(j + 1);
+            if (!is_valid_number(values[i]))
+            {
+                values[i] = data[i].substr(j + 1);
+                continue;
+            }
         }
     }
     return values;
@@ -191,13 +197,13 @@ std::string *get_values(std::string *data, int size, int flag)
 
 void make_multimap(std::string *dates, std::string *values, int size, std::multimap<std::string, float> &bitcoin)
 {
-    for (int i = 0; i < size; i++)
+    for (int i = 1; i < size; i++)
     {
         bitcoin.insert(std::make_pair(dates[i], atof(values[i].c_str())));
     }
 }
 
-void search_data(std::string *dates, std::string *values, const std::multimap<std::string, float> &bitcoin, unsigned int size)
+void search_data(std::string *dates, std::string *values, const std::multimap<std::string, float> &bitcoin, unsigned int size, std::string lowest_date)
 {
     for (unsigned int i = 0; i < size - 2; i++)
     {
@@ -215,7 +221,7 @@ void search_data(std::string *dates, std::string *values, const std::multimap<st
             std::cerr << values[i] << std::endl;
             continue;
         }
-        if (!is_valid_date(dates[i]))
+        if (!is_valid_date(dates[i]) || dates[i] < lowest_date)
         {
             std::cerr << "Error: bad input => " + dates[i] << std::endl;
             continue;
