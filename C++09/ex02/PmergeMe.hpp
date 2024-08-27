@@ -6,13 +6,14 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 10:05:09 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/27 11:36:56 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/27 15:29:51 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
+#include <utility>
 #include <vector>
 #include <algorithm>
 #include <ctime>
@@ -164,60 +165,6 @@ void insertWithBinarySearch(Container &sorted, Container &smaller, const std::pa
 }
 
 template <typename Container>
-void mergeNum(Container &left, Container &right, Container &result)
-{
-    typename Container::iterator it_left = left.begin();
-    typename Container::iterator it_right = right.begin();
-
-    while (it_left != left.end() && it_right != right.end())
-    {
-        comparision_count++;
-        if (*it_left <= *it_right)
-        {
-            result.push_back(*it_left);
-            ++it_left;
-        }
-        else
-        {
-            result.push_back(*it_right);
-            ++it_right;
-        }
-    }
-
-    while (it_left != left.end())
-    {
-        result.push_back(*it_left);
-        ++it_left;
-    }
-
-    while (it_right != right.end())
-    {
-        result.push_back(*it_right);
-        ++it_right;
-    }
-}
-
-template <typename Container>
-void mergeSort(Container &container)
-{
-    if (container.size() <= 1)
-        return;
-
-    Container left, right;
-    typename Container::iterator it = container.begin();
-    std::advance(it, std::distance(container.begin(), container.end()) / 2);
-
-    left.insert(left.begin(), container.begin(), it);
-    right.insert(right.begin(), it, container.end());
-
-    mergeSort(left);
-    mergeSort(right);
-
-    container.clear();
-    mergeNum(left, right, container);
-}
-
-template <typename Container>
 void insertTheSmallest(Container &sorted, Container &smaller, Container &larger, const std::pair<Container, Container> &pair)
 {
     if (larger.empty())
@@ -229,6 +176,7 @@ void insertTheSmallest(Container &sorted, Container &smaller, Container &larger,
 
     while (it1 != pair.first.end() && it2 != pair.second.end())
     {
+        comparision_count++;
         if (front == *it1)
         {
             sorted.insert(sorted.begin(), *it2);
@@ -246,12 +194,125 @@ void insertTheSmallest(Container &sorted, Container &smaller, Container &larger,
     }
 }
 
+// **************** -------NEW------- ******************** //
+
+template <typename Container>
+void swapPairs(std::pair<Container, Container> &pair)
+{
+    if (pair.first.empty())
+        return;
+
+    typename Container::iterator it1 = pair.first.begin();
+    typename Container::iterator it2 = pair.second.begin();
+
+    while (it1 != pair.first.end() && it2 != pair.second.end())
+    {
+        comparision_count++;
+        if (*it1 < *it2)
+        {
+            std::swap(*it1, *it2);
+        }
+        ++it1;
+        ++it2;
+    }
+}
+
+template <typename T>
+bool comparePairs(const std::pair<T, T> &a, const std::pair<T, T> &b)
+{
+    comparision_count++;
+    return a.first < b.first;
+}
+
+template <typename T>
+void merge(std::vector<std::pair<T, T> > &array, int left, int mid, int right)
+{
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+    std::vector<std::pair<T, T> > L(n1);
+    std::vector<std::pair<T, T> > R(n2);
+
+    for (int i = 0; i < n1; ++i)
+        L[i] = array[left + i];
+    for (int j = 0; j < n2; ++j)
+        R[j] = array[mid + 1 + j];
+
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2)
+    {
+        if (comparePairs(L[i], R[j]))
+        {
+            array[k] = L[i];
+            ++i;
+        }
+        else
+        {
+            array[k] = R[j];
+            ++j;
+        }
+        ++k;
+    }
+
+    while (i < n1)
+    {
+        array[k] = L[i];
+        ++i;
+        ++k;
+    }
+
+    while (j < n2)
+    {
+        array[k] = R[j];
+        ++j;
+        ++k;
+    }
+}
+
+template <typename T>
+void mergeInsertionSort(std::vector<std::pair<T, T> > &array, int left, int right)
+{
+    if (array.size() <= 1)
+        return;
+
+    if (left < right)
+    {
+        int mid = left + (right - left) / 2;
+        mergeInsertionSort(array, left, mid);
+        mergeInsertionSort(array, mid + 1, right);
+        merge(array, left, mid, right);
+    }
+}
+
+template <typename Container>
+void sortThePairs(std::pair<Container, Container> &pair)
+{
+    typedef typename Container::value_type T;
+    std::vector<std::pair<T, T> > combinedPairs;
+
+    for (size_t i = 0; i < pair.first.size(); ++i)
+    {
+        combinedPairs.push_back(std::pair<T, T>(pair.first[i], pair.second[i]));
+    }
+
+    mergeInsertionSort(combinedPairs, 0, combinedPairs.size() - 1);
+
+    pair.first.clear();
+    pair.second.clear();
+    for (typename std::vector<std::pair<T, T> >::const_iterator it = combinedPairs.begin(); it != combinedPairs.end(); ++it)
+    {
+        pair.first.push_back(it->first);
+        pair.second.push_back(it->second);
+    }
+}
+
 template <typename Container>
 void fordJohnsonSort(Container &array)
 {
     if (array.size() <= 1)
         return;
-        
+    
+    Container temp;
     std::pair<Container, Container> pair;
     for (typename Container::iterator it = array.begin(); it != array.end(); ++it)
     {
@@ -264,15 +325,16 @@ void fordJohnsonSort(Container &array)
             ++it;
         }
         else
-            pair.first.push_back(*it);
+        {
+            temp.push_back(*it);
+        }
     }
     
+    swapPairs(pair);
+    sortThePairs(pair);
     Container larger, smaller;
-    
     splitArray(pair, larger, smaller);
-    
-    mergeSort(larger);
-
+    smaller.insert(smaller.end(), temp.begin(), temp.end());
     Container sorted;
     sorted = larger;
     
