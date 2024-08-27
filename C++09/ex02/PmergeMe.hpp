@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 10:05:09 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/27 11:28:36 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/27 11:36:56 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,6 +270,7 @@ void fordJohnsonSort(Container &array)
     Container larger, smaller;
     
     splitArray(pair, larger, smaller);
+    
     mergeSort(larger);
 
     Container sorted;
@@ -288,6 +289,6 @@ void fordJohnsonSort(Container &array)
     }
     
     array = sorted;
-    //std::cout << "Comparision count: " << comparision_count << std::endl;
+    std::cout << "Comparision count: " << comparision_count << std::endl;
     comparision_count = 0;
 }
