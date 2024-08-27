@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 07:27:43 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/25 10:15:11 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/27 11:21:04 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,23 @@ bool hasRepetition(const std::vector<int> &array)
             return true;
     }
     return false;
+}
+
+template <typename Container>
+bool isSorted(const Container& array, unsigned int size)
+{
+    if (array.empty())
+        return false;
+    if (array.size() != size)
+        return false;
+    for (typename Container::const_iterator it = array.begin(); it != array.end(); ++it)
+    {
+        typename Container::const_iterator next_it = it;
+        ++next_it;
+        if (next_it != array.end() && *it > *next_it)
+            return false;
+    }
+    return true;
 }
 
 int main(int argc, char const **argv)
@@ -74,6 +91,8 @@ int main(int argc, char const **argv)
         
         std::cout << "Time to process a range of " << argc - 1 << " elements with std::deque: " << std::fixed << std::setprecision(6) << duration * 1e3 << " us" << std::endl;
         
+        if (!isSorted(_array, _array.size()))
+            throw std::runtime_error("Array is not sorted");
     }
     catch (const std::exception& e)
     {

@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 10:05:09 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/25 14:09:58 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/27 11:28:36 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 #include <iostream>
 #include <vector>
-#include <list>
 #include <algorithm>
 #include <ctime>
-#include <stdexcept>
 #include <iterator>
 #include <cstring>
 #include <string>
@@ -27,7 +25,7 @@
 static int comparision_count = 0;
 
 template <typename Container>
-void split_array(const std::pair<Container, Container> &pair, Container &larger, Container &smaller)
+void splitArray(const std::pair<Container, Container> &pair, Container &larger, Container &smaller)
 {
     typename Container::const_iterator it1 = pair.first.begin();
     typename Container::const_iterator it2 = pair.second.begin();
@@ -63,7 +61,7 @@ void split_array(const std::pair<Container, Container> &pair, Container &larger,
 }
 
 template <typename Container>
-std::vector<int> generate_jacobsthal_numbers(Container limit)
+std::vector<int> generateJacobsthalNumbers(Container limit)
 {
     std::vector<int> jacobsthal_numbers;
     jacobsthal_numbers.push_back(1);
@@ -94,7 +92,7 @@ std::vector<int> generate_jacobsthal_numbers(Container limit)
 }
 
 template <typename ForwardIterator, typename T>
-ForwardIterator custom_lower_bound(ForwardIterator first, ForwardIterator last, const T& value)
+ForwardIterator customLowerBound(ForwardIterator first, ForwardIterator last, const T& value)
 {
     ForwardIterator it;
     typename std::iterator_traits<ForwardIterator>::difference_type count, step;
@@ -118,7 +116,7 @@ ForwardIterator custom_lower_bound(ForwardIterator first, ForwardIterator last, 
 }
 
 template <typename Container>
-void insert_with_jacobsthal_binary_search(Container &sorted, Container &smaller, const std::pair<Container, Container> &pair)
+void insertWithBinarySearch(Container &sorted, Container &smaller, const std::pair<Container, Container> &pair)
 {
     if (smaller.empty())
         return;
@@ -146,7 +144,7 @@ void insert_with_jacobsthal_binary_search(Container &sorted, Container &smaller,
 
     typename Container::iterator limit_it = std::find(sorted.begin(), sorted.end(), limit);
 
-    std::vector<int> jacobsthal_numbers = generate_jacobsthal_numbers(std::distance(sorted.begin(), limit_it));
+    std::vector<int> jacobsthal_numbers = generateJacobsthalNumbers(std::distance(sorted.begin(), limit_it));
 
     typename Container::iterator pos = limit_it;
     for (int i = 0; i < (int) jacobsthal_numbers.size(); ++i)
@@ -159,14 +157,14 @@ void insert_with_jacobsthal_binary_search(Container &sorted, Container &smaller,
         }
     }
 
-    typename Container::iterator it = custom_lower_bound(sorted.begin(), pos, value);
+    typename Container::iterator it = customLowerBound(sorted.begin(), pos, value);
     
     sorted.insert(it, value);
     smaller.erase(smaller.begin());
 }
 
 template <typename Container>
-void merge(Container &left, Container &right, Container &result)
+void mergeNum(Container &left, Container &right, Container &result)
 {
     typename Container::iterator it_left = left.begin();
     typename Container::iterator it_right = right.begin();
@@ -200,7 +198,7 @@ void merge(Container &left, Container &right, Container &result)
 }
 
 template <typename Container>
-void merge_sort(Container &container)
+void mergeSort(Container &container)
 {
     if (container.size() <= 1)
         return;
@@ -212,15 +210,15 @@ void merge_sort(Container &container)
     left.insert(left.begin(), container.begin(), it);
     right.insert(right.begin(), it, container.end());
 
-    merge_sort(left);
-    merge_sort(right);
+    mergeSort(left);
+    mergeSort(right);
 
     container.clear();
-    merge(left, right, container);
+    mergeNum(left, right, container);
 }
 
 template <typename Container>
-void insert_the_smallest(Container &sorted, Container &smaller, Container &larger, const std::pair<Container, Container> &pair)
+void insertTheSmallest(Container &sorted, Container &smaller, Container &larger, const std::pair<Container, Container> &pair)
 {
     if (larger.empty())
         return;
@@ -249,29 +247,11 @@ void insert_the_smallest(Container &sorted, Container &smaller, Container &large
 }
 
 template <typename Container>
-bool is_sorted(const Container& array, unsigned int size)
-{
-    if (array.empty())
-        return false;
-    if (array.size() != size)
-        return false;
-    for (typename Container::const_iterator it = array.begin(); it != array.end(); ++it)
-    {
-        typename Container::const_iterator next_it = it;
-        ++next_it;
-        if (next_it != array.end() && *it > *next_it)
-            return false;
-    }
-    return true;
-}
-
-template <typename Container>
 void fordJohnsonSort(Container &array)
 {
     if (array.size() <= 1)
         return;
-    unsigned int size = array.size();
-    
+        
     std::pair<Container, Container> pair;
     for (typename Container::iterator it = array.begin(); it != array.end(); ++it)
     {
@@ -284,21 +264,18 @@ void fordJohnsonSort(Container &array)
             ++it;
         }
         else
-        {
             pair.first.push_back(*it);
-        }
-        
     }
     
     Container larger, smaller;
-    split_array(pair, larger, smaller);
-
-    merge_sort(larger);
+    
+    splitArray(pair, larger, smaller);
+    mergeSort(larger);
 
     Container sorted;
     sorted = larger;
     
-    insert_the_smallest(sorted, smaller, larger, pair);
+    insertTheSmallest(sorted, smaller, larger, pair);
     if (smaller.size() == 1 && smaller.front() > *(--sorted.end()))
     {
         sorted.insert(sorted.end(), smaller.front());
@@ -307,13 +284,10 @@ void fordJohnsonSort(Container &array)
 
     while (!smaller.empty())
     {
-        insert_with_jacobsthal_binary_search(sorted, smaller, pair);
+        insertWithBinarySearch(sorted, smaller, pair);
     }
-
-    if (is_sorted(sorted, size))
-        array = sorted;
-    else  
-        throw std::invalid_argument("Array is not sorted.");
+    
+    array = sorted;
     //std::cout << "Comparision count: " << comparision_count << std::endl;
     comparision_count = 0;
 }
