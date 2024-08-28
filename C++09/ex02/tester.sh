@@ -13,8 +13,11 @@
 # done
 
 
-for i in $(seq 1 3000); do
+for i in $(seq 1 100); do
     n=$i
-    random_numbers=$(shuf -i 1-100000 -n $n | tr "\n" " ")
-     ./PmergeMe $random_numbers
+    for j in $(seq 1 10); do
+        random_numbers=$(shuf -i 1-100000 -n $n | tr "\n" " ")
+        ./PmergeMe $random_numbers
+    sleep 0.5
+    done
 done
