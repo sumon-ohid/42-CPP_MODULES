@@ -6,7 +6,7 @@
 /*   By: msumon <msumon@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 10:05:09 by msumon            #+#    #+#             */
-/*   Updated: 2024/08/27 15:29:51 by msumon           ###   ########.fr       */
+/*   Updated: 2024/08/28 07:45:35 by msumon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,18 @@ std::vector<int> generateJacobsthalNumbers(Container limit)
         ++n;
     }
     
-    // std::vector<int> filled_numbers;
-    // if (jacobsthal_numbers.size() < 1)
-    //     filled_numbers.push_back(1);
-    // for (unsigned int i = 2; i < jacobsthal_numbers.size(); ++i)
-    // {
-    //     int temp = jacobsthal_numbers[i];
-    //     while (temp > jacobsthal_numbers[i - 1] && temp < limit)
-    //     {
-    //         filled_numbers.push_back(temp--);
-    //     }
-    // }
-    return jacobsthal_numbers;
+    std::vector<int> filled_numbers;
+    if (jacobsthal_numbers.size() < 1)
+        filled_numbers.push_back(1);
+    for (unsigned int i = 2; i < jacobsthal_numbers.size(); ++i)
+    {
+        int temp = jacobsthal_numbers[i];
+        while (temp > jacobsthal_numbers[i - 1] && temp < limit)
+        {
+            filled_numbers.push_back(temp--);
+        }
+    }
+    return filled_numbers;
 }
 
 template <typename ForwardIterator, typename T>
@@ -117,32 +117,15 @@ ForwardIterator customLowerBound(ForwardIterator first, ForwardIterator last, co
 }
 
 template <typename Container>
-void insertWithBinarySearch(Container &sorted, Container &smaller, const std::pair<Container, Container> &pair)
+void insertWithBinarySearch(Container &sorted, Container &smaller, std::pair<Container, Container> &pair)
 {
     if (smaller.empty())
         return;
 
     typename Container::value_type value = smaller.front();
-    typename Container::const_iterator it1 = pair.first.begin();
-    typename Container::const_iterator it2 = pair.second.begin();
-    typename Container::value_type limit = 0;
-
-    while (it1 != pair.first.end() && it2 != pair.second.end())
-    {
-        if (value == *it1)
-        {
-            limit = *it2;
-            break;
-        }
-        else if (value == *it2)
-        {
-            limit = *it1;
-            break;
-        }
-        ++it1;
-        ++it2;
-    }
-
+    
+    typename Container::value_type limit = pair.first.front();
+        
     typename Container::iterator limit_it = std::find(sorted.begin(), sorted.end(), limit);
 
     std::vector<int> jacobsthal_numbers = generateJacobsthalNumbers(std::distance(sorted.begin(), limit_it));
@@ -150,6 +133,7 @@ void insertWithBinarySearch(Container &sorted, Container &smaller, const std::pa
     typename Container::iterator pos = limit_it;
     for (int i = 0; i < (int) jacobsthal_numbers.size(); ++i)
     {
+        comparision_count++;
         int index = jacobsthal_numbers[i];
         if (index >= std::distance(sorted.begin(), limit_it) || sorted[index] > value)
         {
@@ -162,6 +146,8 @@ void insertWithBinarySearch(Container &sorted, Container &smaller, const std::pa
     
     sorted.insert(it, value);
     smaller.erase(smaller.begin());
+    pair.first.erase(pair.first.begin());
+    pair.second.erase(pair.second.begin());
 }
 
 template <typename Container>
@@ -344,13 +330,13 @@ void fordJohnsonSort(Container &array)
         sorted.insert(sorted.end(), smaller.front());
         smaller.erase(smaller.begin());
     }
-
+    
     while (!smaller.empty())
     {
         insertWithBinarySearch(sorted, smaller, pair);
     }
     
     array = sorted;
-    std::cout << "Comparision count: " << comparision_count << std::endl;
+    //std::cout << "Comparision count: " << comparision_count << std::endl;
     comparision_count = 0;
 }
